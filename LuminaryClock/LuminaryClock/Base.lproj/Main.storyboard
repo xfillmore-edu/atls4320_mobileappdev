@@ -57,7 +57,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Constellations" selectedImage="star.fill" catalog="system" id="gNy-h0-aW4"/>
+                    <tabBarItem key="tabBarItem" title="Constellations" image="star.fill" catalog="system" selectedImage="star.fill" id="gNy-h0-aW4"/>
                     <connections>
                         <outlet property="labelMessage" destination="ltI-7a-u4i" id="IaK-de-HCH"/>
                         <outlet property="starPicker" destination="Kj7-wP-0H5" id="aPU-dy-len"/>
@@ -100,7 +100,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="v5Z-aE-KtR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Go To" selectedImage="arrowshape.turn.up.right.fill" catalog="system" id="nMz-Yt-joq"/>
+                    <tabBarItem key="tabBarItem" title="Go To" image="arrowshape.turn.up.right.fill" catalog="system" selectedImage="arrowshape.turn.up.right.fill" id="nMz-Yt-joq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Jz-xe-olx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,9 +134,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imu-eo-Nhd">
-                                <rect key="frame" x="165" y="394" width="44" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imu-eo-Nhd">
+                                <rect key="frame" x="16" y="392" width="343" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -150,15 +149,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Imu-eo-Nhd" firstAttribute="leading" secondItem="kcH-OW-Pg4" secondAttribute="leading" constant="16" id="6j5-KN-Guy"/>
                             <constraint firstItem="GKh-Yi-nEQ" firstAttribute="leading" secondItem="AEO-T6-H45" secondAttribute="leading" id="Khv-CJ-eAE"/>
                             <constraint firstItem="GKh-Yi-nEQ" firstAttribute="trailing" secondItem="AEO-T6-H45" secondAttribute="trailing" id="Qs4-1v-IT9"/>
                             <constraint firstItem="GKh-Yi-nEQ" firstAttribute="top" secondItem="AEO-T6-H45" secondAttribute="top" constant="128" id="R1V-QR-3lN"/>
+                            <constraint firstAttribute="trailing" secondItem="Imu-eo-Nhd" secondAttribute="trailing" constant="16" id="qgB-Ss-OzJ"/>
+                            <constraint firstItem="Imu-eo-Nhd" firstAttribute="top" secondItem="GKh-Yi-nEQ" secondAttribute="bottom" constant="48" id="xwe-vo-q1f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AEO-T6-H45"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Lunar Cycles" selectedImage="moon.fill" catalog="system" id="L1r-JB-gZs"/>
+                    <tabBarItem key="tabBarItem" title="Lunar Cycles" image="moon.fill" catalog="system" selectedImage="moon.fill" id="L1r-JB-gZs"/>
                     <connections>
                         <outlet property="datePicker" destination="GKh-Yi-nEQ" id="CwA-hY-KCT"/>
+                        <outlet property="labelMoonPhase" destination="Imu-eo-Nhd" id="svJ-w8-odd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ljR-Nj-lVx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
