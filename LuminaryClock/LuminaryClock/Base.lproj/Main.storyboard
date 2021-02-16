@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UeR-yC-85B">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Constellations-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LuminaryClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltI-7a-u4i">
+                                <rect key="frame" x="16" y="392" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kj7-wP-0H5">
+                                <rect key="frame" x="0.0" y="128" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="TDK-pS-5Ri"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="voC-GP-eb5"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Constellations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwb-T0-Lbx">
+                                <rect key="frame" x="16" y="91" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Stars" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsM-Z9-HAe">
+                                <rect key="frame" x="251" y="91" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ltI-7a-u4i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="3yc-iw-wDh"/>
+                            <constraint firstItem="Kj7-wP-0H5" firstAttribute="top" secondItem="LsM-Z9-HAe" secondAttribute="bottom" constant="16" id="5Yv-E5-KC2"/>
+                            <constraint firstItem="ltI-7a-u4i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Tj-x5-QXG"/>
+                            <constraint firstItem="Kj7-wP-0H5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="G5B-us-PPO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LsM-Z9-HAe" secondAttribute="trailing" constant="16" id="NUl-Dz-x61"/>
+                            <constraint firstItem="gwb-T0-Lbx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="V7K-OG-er0"/>
+                            <constraint firstItem="Kj7-wP-0H5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="128" id="VZR-53-srt"/>
+                            <constraint firstAttribute="trailing" secondItem="ltI-7a-u4i" secondAttribute="trailing" constant="16" id="ch4-GH-NIx"/>
+                            <constraint firstItem="ltI-7a-u4i" firstAttribute="top" secondItem="Kj7-wP-0H5" secondAttribute="bottom" constant="48" id="l9b-d1-zZS"/>
+                            <constraint firstItem="Kj7-wP-0H5" firstAttribute="top" secondItem="gwb-T0-Lbx" secondAttribute="bottom" constant="16" id="ldY-lV-vzH"/>
+                            <constraint firstItem="Kj7-wP-0H5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pDN-ot-MlA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Constellations" image="star.fill" catalog="system" selectedImage="star.fill" id="gNy-h0-aW4"/>
+                    <connections>
+                        <outlet property="labelMessage" destination="ltI-7a-u4i" id="IaK-de-HCH"/>
+                        <outlet property="starPicker" destination="Kj7-wP-0H5" id="aPU-dy-len"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880.79999999999995" y="118.29085457271366"/>
+        </scene>
+        <!--ViewControllerTabExternal-->
+        <scene sceneID="JsS-us-gjR">
+            <objects>
+                <viewController title="ViewControllerTabExternal" id="QZ2-gd-WIz" customClass="ViewControllerExternal" customModule="LuminaryClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8RW-k4-FxM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact with the sky" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-pc-3Pz">
+                                <rect key="frame" x="16" y="128" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xf4-BZ-bnm">
+                                <rect key="frame" x="16" y="197" width="343" height="30"/>
+                                <state key="normal" title="Launch Night Sky"/>
+                                <connections>
+                                    <action selector="openExternalApp:" destination="QZ2-gd-WIz" eventType="touchUpInside" id="Dkh-ae-b6X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xf4-BZ-bnm" firstAttribute="top" secondItem="zH6-pc-3Pz" secondAttribute="bottom" constant="48" id="17V-xc-Ryf"/>
+                            <constraint firstItem="v5Z-aE-KtR" firstAttribute="trailing" secondItem="xf4-BZ-bnm" secondAttribute="trailing" constant="16" id="6a2-Kx-5fp"/>
+                            <constraint firstItem="zH6-pc-3Pz" firstAttribute="leading" secondItem="v5Z-aE-KtR" secondAttribute="leading" constant="16" id="Qaq-U2-frw"/>
+                            <constraint firstItem="xf4-BZ-bnm" firstAttribute="leading" secondItem="v5Z-aE-KtR" secondAttribute="leading" constant="16" id="aLq-y3-MEm"/>
+                            <constraint firstItem="v5Z-aE-KtR" firstAttribute="trailing" secondItem="zH6-pc-3Pz" secondAttribute="trailing" constant="16" id="grY-iO-S7b"/>
+                            <constraint firstItem="zH6-pc-3Pz" firstAttribute="top" secondItem="v5Z-aE-KtR" secondAttribute="top" constant="128" id="xnJ-mZ-sT8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="v5Z-aE-KtR"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Go To" image="arrowshape.turn.up.right.fill" catalog="system" selectedImage="arrowshape.turn.up.right.fill" id="nMz-Yt-joq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Jz-xe-olx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="1498"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6bj-8I-0JS">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="UeR-yC-85B" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6NP-3X-vhS">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="qEP-yf-t7E"/>
+                        <segue destination="ij4-Eh-GEQ" kind="relationship" relationship="viewControllers" id="8vg-ZK-JAO"/>
+                        <segue destination="QZ2-gd-WIz" kind="relationship" relationship="viewControllers" id="2fA-6f-vCU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wdk-6Q-DLt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58.399999999999999" y="118.29085457271366"/>
+        </scene>
+        <!--ViewControllerTabMoon-->
+        <scene sceneID="HBB-3X-Zye">
+            <objects>
+                <viewController title="ViewControllerTabMoon" id="ij4-Eh-GEQ" customClass="ViewControllerMoon" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kcH-OW-Pg4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imu-eo-Nhd">
+                                <rect key="frame" x="16" y="392" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="GKh-Yi-nEQ">
+                                <rect key="frame" x="0.0" y="128" width="375" height="216"/>
+                                <connections>
+                                    <action selector="pickDate:" destination="ij4-Eh-GEQ" eventType="valueChanged" id="AZx-Hi-VKR"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Imu-eo-Nhd" firstAttribute="leading" secondItem="kcH-OW-Pg4" secondAttribute="leading" constant="16" id="6j5-KN-Guy"/>
+                            <constraint firstItem="GKh-Yi-nEQ" firstAttribute="leading" secondItem="AEO-T6-H45" secondAttribute="leading" id="Khv-CJ-eAE"/>
+                            <constraint firstItem="GKh-Yi-nEQ" firstAttribute="trailing" secondItem="AEO-T6-H45" secondAttribute="trailing" id="Qs4-1v-IT9"/>
+                            <constraint firstItem="GKh-Yi-nEQ" firstAttribute="top" secondItem="AEO-T6-H45" secondAttribute="top" constant="128" id="R1V-QR-3lN"/>
+                            <constraint firstAttribute="trailing" secondItem="Imu-eo-Nhd" secondAttribute="trailing" constant="16" id="qgB-Ss-OzJ"/>
+                            <constraint firstItem="Imu-eo-Nhd" firstAttribute="top" secondItem="GKh-Yi-nEQ" secondAttribute="bottom" constant="48" id="xwe-vo-q1f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AEO-T6-H45"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Lunar Cycles" image="moon.fill" catalog="system" selectedImage="moon.fill" id="L1r-JB-gZs"/>
+                    <connections>
+                        <outlet property="datePicker" destination="GKh-Yi-nEQ" id="CwA-hY-KCT"/>
+                        <outlet property="labelMoonPhase" destination="Imu-eo-Nhd" id="svJ-w8-odd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ljR-Nj-lVx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="806"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
+        <image name="moon.fill" catalog="system" width="128" height="121"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+    </resources>
+</document>
