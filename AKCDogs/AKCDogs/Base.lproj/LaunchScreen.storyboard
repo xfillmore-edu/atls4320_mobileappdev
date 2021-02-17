@@ -26,11 +26,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="86s-gA-fYb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4mW-bY-D9I"/>
-                            <constraint firstItem="86s-gA-fYb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="999" constant="24" id="HFS-db-cRg"/>
+                            <constraint firstItem="86s-gA-fYb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="HFS-db-cRg"/>
+                            <constraint firstItem="86s-gA-fYb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Nmn-QP-lDw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="86s-gA-fYb" secondAttribute="trailing" constant="24" id="T9X-zq-2us"/>
                             <constraint firstItem="86s-gA-fYb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="24" id="h8E-Qg-Erv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="86s-gA-fYb" secondAttribute="bottom" priority="999" constant="24" id="n9P-7Q-lOO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="86s-gA-fYb" secondAttribute="bottom" constant="24" id="n9P-7Q-lOO"/>
                         </constraints>
                     </view>
                 </viewController>

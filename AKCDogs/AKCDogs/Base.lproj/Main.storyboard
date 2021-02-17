@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,11 +63,78 @@
                             <outlet property="delegate" destination="HfS-WN-0NC" id="PcW-Xf-y2y"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zJ2-i9-9lJ"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="zJ2-i9-9lJ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="CJH-lI-hBy">
+                            <connections>
+                                <segue destination="KDb-Py-9TA" kind="presentation" id="OvN-Hg-DCE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka9-iF-Ijx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1446" y="90"/>
+        </scene>
+        <!--AddVC-->
+        <scene sceneID="R0P-y1-lrr">
+            <objects>
+                <viewController id="KDb-Py-9TA" customClass="AddVC" customModule="AKCDogs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="74g-gX-iXI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="uNo-br-dpn">
+                                <rect key="frame" x="144.5" y="80" width="125" height="94.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAO-Hr-XhV">
+                                        <rect key="frame" x="47" y="0.0" width="31" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new dog breed" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="01E-L0-CkG">
+                                        <rect key="frame" x="0.0" y="60.5" width="125" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZ7-nk-6mf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Title" id="Lt2-NF-n1D">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rWB-2L-tDK">
+                                            <connections>
+                                                <segue destination="1pH-du-0vW" kind="unwind" identifier="undwindCancelSegue" unwindAction="unwindSegue:" id="FCZ-sc-7uX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Ygm-WY-3vN">
+                                            <connections>
+                                                <segue destination="1pH-du-0vW" kind="unwind" identifier="unwindSaveSegue" unwindAction="unwindSegue:" id="gJF-k5-kOH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0ux-wo-Nwc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tZ7-nk-6mf" firstAttribute="leading" secondItem="0ux-wo-Nwc" secondAttribute="leading" id="8tI-cg-fkk"/>
+                            <constraint firstItem="uNo-br-dpn" firstAttribute="top" secondItem="tZ7-nk-6mf" secondAttribute="bottom" constant="24" id="M6M-v1-Y3k"/>
+                            <constraint firstItem="tZ7-nk-6mf" firstAttribute="trailing" secondItem="0ux-wo-Nwc" secondAttribute="trailing" id="Xdw-H2-zuH"/>
+                            <constraint firstItem="tZ7-nk-6mf" firstAttribute="top" secondItem="0ux-wo-Nwc" secondAttribute="top" id="jMI-ru-Ulk"/>
+                            <constraint firstItem="uNo-br-dpn" firstAttribute="centerX" secondItem="74g-gX-iXI" secondAttribute="centerX" id="vhN-uy-Fjh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="breedInput" destination="01E-L0-CkG" id="ebE-OY-SWu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICj-4Y-swM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="1pH-du-0vW" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2206" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fZY-fQ-ZNO">

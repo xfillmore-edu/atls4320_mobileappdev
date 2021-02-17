@@ -24,7 +24,7 @@ class TableViewControllerDetail: UITableViewController {
         
         // search controller
         let results = SearchVC() // instance of Search View Controller
-        results.fullkennel = breedlist
+        results.fullkennel = kennel.fetchDogs(index: groupnum)
         searchable = UISearchController(searchResultsController: results)
         
         searchable.searchBar.placeholder = "Woof?"
@@ -82,14 +82,19 @@ class TableViewControllerDetail: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func unwindSegue(_ segue : UIStoryboardSegue) {
+        if segue.identifier == "unwindSaveSegue" {
+            if let source = segue.source as? AddVC {
+                if source.newDog.isEmpty == false {
+                    kennel.registerBreed(index: groupnum, breed: source.newDog, location: breedlist.count)
+                    breedlist.append(source.newDog)
+                    
+                    tableView.reloadData()
+                }
+            }
+        }
     }
-    */
 
 }

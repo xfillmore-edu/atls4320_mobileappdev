@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EB9AF2225DCE7F4000E1259 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB9AF2125DCE7F4000E1259 /* AddVC.swift */; };
 		1EC0952925DB5E2D00B28CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0952825DB5E2D00B28CE4 /* AppDelegate.swift */; };
 		1EC0952B25DB5E2E00B28CE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0952A25DB5E2E00B28CE4 /* SceneDelegate.swift */; };
 		1EC0953025DB5E2E00B28CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC0952E25DB5E2E00B28CE4 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EB9AF2125DCE7F4000E1259 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		1EC0952525DB5E2D00B28CE4 /* AKCDogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKCDogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC0952825DB5E2D00B28CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC0952A25DB5E2E00B28CE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				1EC0954825DB8E9900B28CE4 /* DogGroup.swift */,
 				1EC0954E25DBB73700B28CE4 /* TableViewControllerRoot.swift */,
 				1EC0955525DC1A0D00B28CE4 /* SearchVC.swift */,
+				1EB9AF2125DCE7F4000E1259 /* AddVC.swift */,
 				1EC0952E25DB5E2E00B28CE4 /* Main.storyboard */,
 				1EC0955125DBE27E00B28CE4 /* TableViewControllerDetail.swift */,
 				1EC0953125DB5E3100B28CE4 /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB9AF2225DCE7F4000E1259 /* AddVC.swift in Sources */,
 				1EC0954625DB8D2900B28CE4 /* DataHandler.swift in Sources */,
 				1EC0955225DBE27E00B28CE4 /* TableViewControllerDetail.swift in Sources */,
 				1EC0952925DB5E2D00B28CE4 /* AppDelegate.swift in Sources */,
