@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_track">
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.sparrow.ui.home.HomeFragment"
+        android:label="@string/navtitle_settings"
+        tools:layout="@layout/fragment_sendreceive" />
+
+    <fragment
+        android:id="@+id/navigation_semdreceive"
+        android:name="com.example.sparrow.ui.dashboard.DashboardFragment"
+        android:label="@string/navtitle_sendreceive"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_track"
+        android:name="com.example.sparrow.ui.notifications.NotificationsFragment"
+        android:label="@string/navtitle_track"
+        tools:layout="@layout/fragment_tracking" />
+</navigation>
