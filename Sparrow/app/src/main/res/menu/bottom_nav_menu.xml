@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:menuCategory="secondary"
+        android:title="@string/navtitle_settings" />
+
+    <item
+        android:id="@+id/navigation_semdreceive"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:menuCategory="container"
+        android:title="@string/navtitle_sendreceive" />
+
+    <item
+        android:id="@+id/navigation_track"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:menuCategory="container"
+        android:title="@string/navtitle_track" />
+
+</menu>

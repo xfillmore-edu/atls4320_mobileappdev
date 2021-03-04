@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- base -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- blue-grey light theme -->
+    <color name="bg300">#90a4ae</color>
+    <color name="bg300_light">#c1d5e0</color>
+    <color name="bg300_dark">#62757f</color>
+
+    <!-- teal light theme -->
+    <color name="teal200">#80cbc4</color>
+    <color name="teal200_light">#b2fef7</color>
+    <color name="teal200_dark">#4f9a94</color>
+
+    <!-- blue-grey dark theme -->
+    <color name="bg600">#546e7a</color>
+    <color name="bg600_light">#819ca9</color>
+    <color name="bg600_dark">#29434e</color>
+
+    <!-- teal dark theme -->
+    <color name="teal800">#00695c</color>
+    <color name="teal800_light">#439889</color>
+    <color name="teal800_dark">#003d33</color>
+</resources>
