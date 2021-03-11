@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // applies to using table view delegate...?
-//        numeros.onDataUpdate = {[weak self] (data: [Fact]) in self?.render()}
+        numeros.onDataUpdate = {[weak self] (data: Fact) in self?.render()}
         
         // dismiss keyboard when tapping anywhere on view
         // https://stackoverflow.com/a/27079103
@@ -35,18 +35,26 @@ class ViewController: UIViewController {
         if numberInputField.text != "" {
             let num = Int(numberInputField.text!)
             numeros.reqJSON(num!)
-            
+
             // requesting data and parsing too closely together...?
-            
-            let alert = UIAlertController(title: "Number Fact:", message: numeros.fFetch(), preferredStyle: .alert)
-            let action1 = UIAlertAction(title: "Cool", style: .default, handler: nil)
-            alert.addAction(action1)
-            
-            present(alert, animated: true, completion: nil)
+
+//            let alert = UIAlertController(title: "Number Fact:", message: numeros.fFetch(), preferredStyle: .alert)
+//            let action1 = UIAlertAction(title: "Cool", style: .default, handler: nil)
+//            alert.addAction(action1)
+//
+//            present(alert, animated: true, completion: nil)
         }
         
         
         
+    }
+    
+    func render() {
+        let alert = UIAlertController(title: "Number Fact:", message: numeros.fFetch(), preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Cool", style: .default, handler: nil)
+        alert.addAction(action1)
+
+        present(alert, animated: true, completion: nil)
     }
     
 }

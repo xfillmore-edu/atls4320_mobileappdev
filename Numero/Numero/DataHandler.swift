@@ -5,8 +5,8 @@
 import Foundation
 
 class DataHandler {
-    var fdata = FactRaw()
-    var onDataUpdate: ((_ data: [Fact]) -> Void)?
+    var fdata = Fact()
+    var onDataUpdate: ((_ data: Fact) -> Void)?
 
     func reqJSON(_ val: Int) {
         // API: numbersapi.com
@@ -15,6 +15,7 @@ class DataHandler {
         ]
         let ftype = (Int.random(in: 0...2) == 0) ? "math" : "trivia" // 2:1 odds get trivia instead of math
         let path = "http://numbersapi.com/"+String(val)+"/"+ftype
+        // app transport security not htttps (see wk 8 firebase NSAppTransportSecurity)
         
         print("defined URL path: \(path)")
 
@@ -54,27 +55,39 @@ class DataHandler {
     func parseJSON(_ data: Data) {
         
         do {
-            let apiData = try JSONDecoder().decode(FactRaw.self, from: data)
-            for f in apiData.content {
-                fdata.content.append(f)
-                print("Created content: \(fdata)")
-            }
+            let ffdata = try JSONDecoder().decode(Fact.self, from: data)
+            
+            fdata.found = ffdata.found
+            fdata.text = ffdata.text
+            fdata.number = ffdata.number
+//            for f in apiData.content {
+//                fdata.content.append(f)
+//                print("Created content: \(fdata)")
+//            }
         }
         catch let err {
             print("JSON parsing error: \(err.localizedDescription)")
             return
         }
 
-        onDataUpdate?(fdata.content)
+        onDataUpdate?(fdata)
     }
     
     func fFetch() -> String {
         var fstr : String = ""
-        if fdata.content[0].found {
-            fstr = fdata.content[0].text
+        
+//        if fdata.content[0].found {
+//            fstr = fdata.content[0].text
+//        }
+//        else {
+//            fstr = "Could not find a fact for \(fdata.content[0].number)"
+//        }
+        
+        if fdata.found {
+            fstr = fdata.text
         }
         else {
-            fstr = "Could not find a fact for \(fdata.content[0].number)"
+            fstr = "Could not find a fact for \(fdata.number)"
         }
 
         return fstr

@@ -5,11 +5,11 @@
 import Foundation
 
 struct Fact : Decodable {
-    let found : Bool
-    let text : String
-    let number : Float
+    var found : Bool = false
+    var text : String = ""
+    var number : Float = 0.0
 }
 
-struct FactRaw : Decodable {
-    var content = [Fact]()
-}
+//struct FactRaw : Decodable {
+//    var content = [Fact]()
+//}
