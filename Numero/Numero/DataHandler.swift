@@ -15,6 +15,8 @@ class DataHandler {
         ]
         let ftype = (Int.random(in: 0...2) == 0) ? "math" : "trivia" // 2:1 odds get trivia instead of math
         let path = "http://numbersapi.com/"+String(val)+"/"+ftype
+        
+        print("defined URL path: \(path)")
 
         guard let url_ = URL(string: path)
         else {
@@ -22,9 +24,10 @@ class DataHandler {
             return
         }
 
-        var request = URLRequest(url: url_, timeoutInterval: 10.0)
+        var request = URLRequest(url: url_, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = hdrs
+        print("Created request object: \(request)")
 
         let session = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
             let httpResponse = response as! HTTPURLResponse
@@ -38,6 +41,7 @@ class DataHandler {
             }
 
             DispatchQueue.main.async {
+                print("Parsing data...")
                 self.parseJSON(data!)
                 print(data!)
             }
