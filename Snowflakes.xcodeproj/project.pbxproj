@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E3C55C02600B17D00260232 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C55BF2600B17D00260232 /* AppDelegate.swift */; };
+		1E3C55C22600B17D00260232 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C55C12600B17D00260232 /* SceneDelegate.swift */; };
+		1E3C55C72600B17D00260232 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E3C55C52600B17D00260232 /* Main.storyboard */; };
+		1E3C55C92600B17E00260232 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E3C55C82600B17E00260232 /* Assets.xcassets */; };
+		1E3C55CC2600B17E00260232 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E3C55CA2600B17E00260232 /* LaunchScreen.storyboard */; };
+		1E3C55D52600B34A00260232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E3C55D42600B34A00260232 /* GoogleService-Info.plist */; };
+		1E3C55F226019D5200260232 /* SnowdexTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C55F126019D5200260232 /* SnowdexTableVC.swift */; };
+		1E3C55F526019E1500260232 /* NewSnowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C55F426019E1500260232 /* NewSnowVC.swift */; };
+		1E3C55F82601EDEB00260232 /* SnowscopeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C55F72601EDEB00260232 /* SnowscopeVC.swift */; };
+		1E3C55FB2602184F00260232 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C55FA2602184F00260232 /* DataHandler.swift */; };
+		1E3C563126022A2400260232 /* Snowflake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C563026022A2400260232 /* Snowflake.swift */; };
+		628B5EA53A383D51F87B969D /* Pods_Snowflakes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC05A1E2EA16D5119F572F6 /* Pods_Snowflakes.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1E3C55BC2600B17D00260232 /* Snowflakes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snowflakes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E3C55BF2600B17D00260232 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1E3C55C12600B17D00260232 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1E3C55C62600B17D00260232 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1E3C55C82600B17E00260232 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1E3C55CB2600B17E00260232 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1E3C55CD2600B17E00260232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E3C55D42600B34A00260232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E3C55F126019D5200260232 /* SnowdexTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowdexTableVC.swift; sourceTree = "<group>"; };
+		1E3C55F426019E1500260232 /* NewSnowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSnowVC.swift; sourceTree = "<group>"; };
+		1E3C55F72601EDEB00260232 /* SnowscopeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowscopeVC.swift; sourceTree = "<group>"; };
+		1E3C55FA2602184F00260232 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		1E3C563026022A2400260232 /* Snowflake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snowflake.swift; sourceTree = "<group>"; };
+		52C0A5E0B0ADE90871A6811A /* Pods-Snowflakes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snowflakes.debug.xcconfig"; path = "Target Support Files/Pods-Snowflakes/Pods-Snowflakes.debug.xcconfig"; sourceTree = "<group>"; };
+		5EC05A1E2EA16D5119F572F6 /* Pods_Snowflakes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snowflakes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8DE6ECDB0072B1F1F538196 /* Pods-Snowflakes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snowflakes.release.xcconfig"; path = "Target Support Files/Pods-Snowflakes/Pods-Snowflakes.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E3C55B92600B17D00260232 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628B5EA53A383D51F87B969D /* Pods_Snowflakes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0EEE2EA3570BDE8B62E1B71D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EC05A1E2EA16D5119F572F6 /* Pods_Snowflakes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E3C55B32600B17D00260232 = {
+			isa = PBXGroup;
+			children = (
+				1E3C55BE2600B17D00260232 /* Snowflakes */,
+				1E3C55BD2600B17D00260232 /* Products */,
+				46EB35CC3D80DFDE26C00C8D /* Pods */,
+				0EEE2EA3570BDE8B62E1B71D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1E3C55BD2600B17D00260232 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E3C55BC2600B17D00260232 /* Snowflakes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E3C55BE2600B17D00260232 /* Snowflakes */ = {
+			isa = PBXGroup;
+			children = (
+				1E3C55BF2600B17D00260232 /* AppDelegate.swift */,
+				1E3C55C12600B17D00260232 /* SceneDelegate.swift */,
+				1E3C55C52600B17D00260232 /* Main.storyboard */,
+				1E3C55F72601EDEB00260232 /* SnowscopeVC.swift */,
+				1E3C55FA2602184F00260232 /* DataHandler.swift */,
+				1E3C563026022A2400260232 /* Snowflake.swift */,
+				1E3C55F126019D5200260232 /* SnowdexTableVC.swift */,
+				1E3C55F426019E1500260232 /* NewSnowVC.swift */,
+				1E3C55C82600B17E00260232 /* Assets.xcassets */,
+				1E3C55CA2600B17E00260232 /* LaunchScreen.storyboard */,
+				1E3C55CD2600B17E00260232 /* Info.plist */,
+				1E3C55D42600B34A00260232 /* GoogleService-Info.plist */,
+			);
+			path = Snowflakes;
+			sourceTree = "<group>";
+		};
+		46EB35CC3D80DFDE26C00C8D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52C0A5E0B0ADE90871A6811A /* Pods-Snowflakes.debug.xcconfig */,
+				F8DE6ECDB0072B1F1F538196 /* Pods-Snowflakes.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E3C55BB2600B17D00260232 /* Snowflakes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E3C55D02600B17E00260232 /* Build configuration list for PBXNativeTarget "Snowflakes" */;
+			buildPhases = (
+				E025E255B5A5EF9FA75BA53C /* [CP] Check Pods Manifest.lock */,
+				1E3C55B82600B17D00260232 /* Sources */,
+				1E3C55B92600B17D00260232 /* Frameworks */,
+				1E3C55BA2600B17D00260232 /* Resources */,
+				F4969B297DD813478277DB9F /* [CP] Embed Pods Frameworks */,
+				CA9AC535702F3CF0286D1B7B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Snowflakes;
+			productName = Snowflakes;
+			productReference = 1E3C55BC2600B17D00260232 /* Snowflakes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E3C55B42600B17D00260232 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					1E3C55BB2600B17D00260232 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 1E3C55B72600B17D00260232 /* Build configuration list for PBXProject "Snowflakes" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1E3C55B32600B17D00260232;
+			productRefGroup = 1E3C55BD2600B17D00260232 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E3C55BB2600B17D00260232 /* Snowflakes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E3C55BA2600B17D00260232 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E3C55CC2600B17E00260232 /* LaunchScreen.storyboard in Resources */,
+				1E3C55D52600B34A00260232 /* GoogleService-Info.plist in Resources */,
+				1E3C55C92600B17E00260232 /* Assets.xcassets in Resources */,
+				1E3C55C72600B17D00260232 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CA9AC535702F3CF0286D1B7B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snowflakes/Pods-Snowflakes-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snowflakes/Pods-Snowflakes-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snowflakes/Pods-Snowflakes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E025E255B5A5EF9FA75BA53C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Snowflakes-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4969B297DD813478277DB9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snowflakes/Pods-Snowflakes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snowflakes/Pods-Snowflakes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snowflakes/Pods-Snowflakes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E3C55B82600B17D00260232 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E3C55F82601EDEB00260232 /* SnowscopeVC.swift in Sources */,
+				1E3C55F526019E1500260232 /* NewSnowVC.swift in Sources */,
+				1E3C55C02600B17D00260232 /* AppDelegate.swift in Sources */,
+				1E3C563126022A2400260232 /* Snowflake.swift in Sources */,
+				1E3C55C22600B17D00260232 /* SceneDelegate.swift in Sources */,
+				1E3C55FB2602184F00260232 /* DataHandler.swift in Sources */,
+				1E3C55F226019D5200260232 /* SnowdexTableVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1E3C55C52600B17D00260232 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E3C55C62600B17D00260232 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1E3C55CA2600B17E00260232 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E3C55CB2600B17E00260232 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1E3C55CE2600B17E00260232 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1E3C55CF2600B17E00260232 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E3C55D12600B17E00260232 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52C0A5E0B0ADE90871A6811A /* Pods-Snowflakes.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Snowflakes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xfillmore.Snowflakes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E3C55D22600B17E00260232 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8DE6ECDB0072B1F1F538196 /* Pods-Snowflakes.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Snowflakes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xfillmore.Snowflakes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E3C55B72600B17D00260232 /* Build configuration list for PBXProject "Snowflakes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3C55CE2600B17E00260232 /* Debug */,
+				1E3C55CF2600B17E00260232 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E3C55D02600B17E00260232 /* Build configuration list for PBXNativeTarget "Snowflakes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3C55D12600B17E00260232 /* Debug */,
+				1E3C55D22600B17E00260232 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E3C55B42600B17D00260232 /* Project object */;
+}
