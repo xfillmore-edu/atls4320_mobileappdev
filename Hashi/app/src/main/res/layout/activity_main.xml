@@ -4,15 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/isNode1"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hashi_is2_256grey" />
+
+    <ImageView
+        android:id="@+id/isNode2"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="48dp"
+        android:clickable="true"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hashi_is3_256grey" />
+
+    <ImageView
+        android:id="@+id/bridgeLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_centerInParent="true"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
