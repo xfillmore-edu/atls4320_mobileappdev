@@ -10,34 +10,33 @@ import com.example.hashi.R.drawable.*
 // https://stackoverflow.com/a/59177156
 // https://developer.android.com/reference/kotlin/android/graphics/drawable/Drawable
 
-class HashiNode(isNum: Int, isPosX: Int, isPosY: Int) {
-    val isVal: Int = isNum
+class HashiNode(isVal: Int, isPosX: Int, isPosY: Int) {
     val isLoc: IntArray = intArrayOf(isPosX, isPosY)
 
     // get node's corresponding drawable resource to display
     // vary for light/dark theme
-//    val isDisplayOnLight: Drawable? = when (isNum) {
-//        1 -> ResourcesCompat.getDrawable(hashi_is1_256grey)
-//        2 -> ResourcesCompat.getDrawable(hashi_is2_256grey)
-//        3 -> ResourcesCompat.getDrawable(hashi_is3_256grey)
-//        4 -> ResourcesCompat.getDrawable(hashi_is4_256grey)
-//        5 -> ResourcesCompat.getDrawable(hashi_is5_256grey)
-//        6 -> ResourcesCompat.getDrawable(hashi_is6_256grey)
-//        7 -> ResourcesCompat.getDrawable(hashi_is7_256grey)
-//        8 -> ResourcesCompat.getDrawable(hashi_is8_256grey)
-//        else -> ResourcesCompat.getDrawable(hashi_is0_256grey)
-//    }
-//    val isDisplayOnDark: Drawable? = when (isNum) {
-//        1 -> ResourcesCompat.getDrawable(hashi_is1_256ylw)
-//        2 -> ResourcesCompat.getDrawable(hashi_is2_256ylw)
-//        3 -> ResourcesCompat.getDrawable(hashi_is3_256ylw)
-//        4 -> ResourcesCompat.getDrawable(hashi_is4_256ylw)
-//        5 -> ResourcesCompat.getDrawable(hashi_is5_256ylw)
-//        6 -> ResourcesCompat.getDrawable(hashi_is6_256ylw)
-//        7 -> ResourcesCompat.getDrawable(hashi_is7_256ylw)
-//        8 -> ResourcesCompat.getDrawable(hashi_is8_256ylw)
-//        else -> ResourcesCompat.getDrawable(hashi_is0_256ylw)
-//    }
+    val isDisplayOnLight: Int = when (isVal) {
+        1 -> hashi_is1_256grey
+        2 -> hashi_is2_256grey
+        3 -> hashi_is3_256grey
+        4 -> hashi_is4_256grey
+        5 -> hashi_is5_256grey
+        6 -> hashi_is6_256grey
+        7 -> hashi_is7_256grey
+        8 -> hashi_is8_256grey
+        else -> hashi_is0_256grey
+    }
+    val isDisplayOnDark: Int = when (isVal) {
+            1 -> hashi_is1_256ylw
+            2 -> hashi_is2_256ylw
+            3 -> hashi_is3_256ylw
+            4 -> hashi_is4_256ylw
+            5 -> hashi_is5_256ylw
+            6 -> hashi_is6_256ylw
+            7 -> hashi_is7_256ylw
+            8 -> hashi_is8_256ylw
+            else -> hashi_is0_256ylw
+        }
 
     var currentNumBridges = 0
     // N1 N2 E1 E2 S1 S2 W1 W2
@@ -62,7 +61,7 @@ class HashiNode(isNum: Int, isPosX: Int, isPosY: Int) {
     // check return value for updating bridges visually
     fun drawBridge (dir: String, dest: HashiNode) : Int {
         // account for if the destination island cannot accept anymore bridges
-        if (dest.currentNumBridges == dest.isVal) return 0
+        if (dest.currentNumBridges == dest.this.isVal) return 0
 
         // account for case of one island that already has a bridge
         if ((isVal == 1) && (currentNumBridges == 1)) {
