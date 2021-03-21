@@ -10,7 +10,7 @@ import com.example.hashi.R.drawable.*
 // https://stackoverflow.com/a/59177156
 // https://developer.android.com/reference/kotlin/android/graphics/drawable/Drawable
 
-class HashiNode(isVal: Int, isPosX: Int, isPosY: Int) {
+class HashiNode(val isVal: Int, isPosX: Int, isPosY: Int) {
     val isLoc: IntArray = intArrayOf(isPosX, isPosY)
 
     // get node's corresponding drawable resource to display
@@ -27,18 +27,18 @@ class HashiNode(isVal: Int, isPosX: Int, isPosY: Int) {
         else -> hashi_is0_256grey
     }
     val isDisplayOnDark: Int = when (isVal) {
-            1 -> hashi_is1_256ylw
-            2 -> hashi_is2_256ylw
-            3 -> hashi_is3_256ylw
-            4 -> hashi_is4_256ylw
-            5 -> hashi_is5_256ylw
-            6 -> hashi_is6_256ylw
-            7 -> hashi_is7_256ylw
-            8 -> hashi_is8_256ylw
-            else -> hashi_is0_256ylw
-        }
+        1 -> hashi_is1_256ylw
+        2 -> hashi_is2_256ylw
+        3 -> hashi_is3_256ylw
+        4 -> hashi_is4_256ylw
+        5 -> hashi_is5_256ylw
+        6 -> hashi_is6_256ylw
+        7 -> hashi_is7_256ylw
+        8 -> hashi_is8_256ylw
+        else -> hashi_is0_256ylw
+    }
 
-    var currentNumBridges = 0
+    private var currentNumBridges = 0
     // N1 N2 E1 E2 S1 S2 W1 W2
     private var expectedBridges: BooleanArray = booleanArrayOf(false, false, false, false, false, false, false, false)
     private var linkedBridges: BooleanArray = booleanArrayOf(false, false, false, false, false, false, false, false)
@@ -61,7 +61,7 @@ class HashiNode(isVal: Int, isPosX: Int, isPosY: Int) {
     // check return value for updating bridges visually
     fun drawBridge (dir: String, dest: HashiNode) : Int {
         // account for if the destination island cannot accept anymore bridges
-        if (dest.currentNumBridges == dest.this.isVal) return 0
+        if (dest.currentNumBridges == dest.isVal) return 0
 
         // account for case of one island that already has a bridge
         if ((isVal == 1) && (currentNumBridges == 1)) {
