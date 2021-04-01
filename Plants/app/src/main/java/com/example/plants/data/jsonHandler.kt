@@ -27,9 +27,9 @@ class jsonHandler() {
 
             for (p in 0 until jsonObject.length()) {
                 val phyname = when (p) {
-                    0 -> "gymnosperms"
-                    1 -> "pteridophytes"
-                    2 -> "bryophytes"
+                    0 -> "pteridophytes"
+                    1 -> "bryophytes"
+                    2 -> "gymnosperms"
                     3 -> "angiosperms"
                     else -> ""
                 }

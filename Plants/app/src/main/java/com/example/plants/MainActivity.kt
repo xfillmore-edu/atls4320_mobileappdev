@@ -6,19 +6,30 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.plants.model.Phyla
 
 class MainActivity : AppCompatActivity() {
 
     var fulldata = ArrayList<Phyla>()
+    private lateinit var ftrans: FragmentTransaction
+    private lateinit var destination: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        // https://www.tutorialspoint.com/how-to-send-a-variable-from-activity-to-fragment-in-android-using-kotlin
+        // https://developer.android.com/guide/fragments/transactions
+        val fman: FragmentManager = supportFragmentManager
+        ftrans = fman.beginTransaction()
+        destination = PlantTableFragment()
+
         val fulldata = jsonHandler().getJSON(this)
-        reloadPhyla("pteridophytes") // initial view data
+        reloadPhyla(0) // initial view data
 
     }
 
@@ -34,25 +45,28 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_phylapterido -> {
-                reloadPhyla("pteridophytes")
+                reloadPhyla(0)
                 return true }
             R.id.action_phylabryo -> {
-                reloadPhyla("bryophytes")
+                reloadPhyla(1)
                 return true }
             R.id.action_phylagymno -> {
-                reloadPhyla("gymnosperms")
+                reloadPhyla(2)
                 return true }
             R.id.action_phylaangio -> {
-                reloadPhyla("angiosperms")
+                reloadPhyla(3)
                 return true }
             else -> super.onOptionsItemSelected(item)
         }
         return false
     }
 
-    private fun reloadPhyla(phy: String) {
-        intent = Intent(this, PlantTableFragment::class.java)
-        intent.putExtra("phyladat", phy)
-        startActivity(intent)
+    private fun reloadPhyla(phy: Int) {
+        val bundle = Bundle()
+        bundle.putString("phylaname", fulldata[phy].altname)
+        bundle.putStringArrayList("phylamembers", fulldata[phy].members)
+
+        destination.arguments = bundle
+        ftrans.add(R.id.plant_table, PlantTableFragment).commit()
     }
 }

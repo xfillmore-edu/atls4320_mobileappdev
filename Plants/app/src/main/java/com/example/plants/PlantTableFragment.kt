@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,12 +26,17 @@ class PlantTableFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bundle:Bundle
+        val bundle = arguments
+        val phylaCommonName = bundle!!.getString("phylaname")
+        val phylaMembers = bundle!!.getStringArrayList("phylamembers")
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        val recyclerView = findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-        val adapter = ListAdapter(datalist)
+        val adapter = ListAdapter(phylaMembers)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        val ptitle = view.findViewById<View>(R.id.pageLabel) as TextView
+        ptitle.text = phylaCommonName
     }
 }
