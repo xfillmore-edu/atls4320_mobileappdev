@@ -28,9 +28,9 @@ class PlantTableFragment: Fragment() {
 
         val bundle = arguments
         val phylaCommonName = bundle!!.getString("phylaname")
-        val phylaMembers = bundle!!.getStringArrayList("phylamembers")
+        val phylaMembers = bundle.getStringArrayList("phylamembers")
 
-        val recyclerView = findViewById<View>(R.id.recyclerView) as RecyclerView
+        val recyclerView = view.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
         val adapter = ListAdapter(phylaMembers)
         recyclerView.adapter = adapter
