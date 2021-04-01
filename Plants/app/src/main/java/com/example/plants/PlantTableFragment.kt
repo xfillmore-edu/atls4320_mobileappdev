@@ -41,4 +41,8 @@ class PlantTableFragment: Fragment() {
         val ptitle = view.findViewById<View>(R.id.pageLabel) as TextView
         ptitle.text = phylaCommonName
     }
+
+    companion object {
+        fun newInstance(): PlantTableFragment = PlantTableFragment()
+    }
 }
