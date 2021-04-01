@@ -1,7 +1,7 @@
 package com.example.plants
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -32,16 +32,27 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_phylapterido -> true // reloadPhyla("pteridophytes")
-            R.id.action_phylabryo -> true // reloadPhyla("bryophytes")
-            R.id.action_phylagymno -> true // reloadPhyla("gymnosperms")
-            R.id.action_phylaangio -> true // reloadPhyla("angiosperms")
+        when (item.itemId) {
+            R.id.action_phylapterido -> {
+                reloadPhyla("pteridophytes")
+                return true }
+            R.id.action_phylabryo -> {
+                reloadPhyla("bryophytes")
+                return true }
+            R.id.action_phylagymno -> {
+                reloadPhyla("gymnosperms")
+                return true }
+            R.id.action_phylaangio -> {
+                reloadPhyla("angiosperms")
+                return true }
             else -> super.onOptionsItemSelected(item)
         }
+        return false
     }
 
-    fun reloadPhyla(phy: String) {
-        //
+    private fun reloadPhyla(phy: String) {
+        intent = Intent(this, PlantTableFragment::class.java)
+        intent.putExtra("phyladat", phy)
+        startActivity(intent)
     }
 }
