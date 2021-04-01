@@ -30,7 +30,7 @@ class PlantTableFragment: Fragment() {
 
         val bundle = arguments
         val phylaCommonName = bundle!!.getString("phylaname")
-        val phylaMembers = bundle.getStringArrayList("phylamembers")
+        val phylaMembers = bundle.getStringArrayList("phylamembers") as ArrayList<String>
 
         val recyclerView = view.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.addItemDecoration(DividerItemDecoration(activity, LinearLayoutManager.VERTICAL))
@@ -42,7 +42,20 @@ class PlantTableFragment: Fragment() {
         ptitle.text = phylaCommonName
     }
 
+    // https://stackoverflow.com/a/53965039
     companion object {
-        fun newInstance(): PlantTableFragment = PlantTableFragment()
+        const val ARGN = "name"
+        const val ARGM = "members"
+        fun newInstance(name: String, members: ArrayList<String>): PlantTableFragment {
+            val fragment = PlantTableFragment()
+
+            val bundle = Bundle().apply {
+                putString(ARGN, name)
+                putStringArrayList(ARGM, members)
+            }
+            fragment.arguments = bundle
+
+            return fragment
+        }
     }
 }

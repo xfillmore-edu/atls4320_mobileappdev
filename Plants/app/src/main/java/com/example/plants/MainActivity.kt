@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.plants.model.Phyla
+import com.example.plants.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,6 +66,8 @@ class MainActivity : AppCompatActivity() {
         bundle.putStringArrayList("phylamembers", fulldata[phy].members)
 
         destination.arguments = bundle
-        ftrans.add(R.id.plant_table, PlantTableFragment).commit()
+//        ftrans.add(R.layout.plant_table, PlantTableFragment).commit()
+
+        val fragment = PlantTableFragment.newInstance(fulldata[phy].altname, fulldata[phy].members)
     }
 }
