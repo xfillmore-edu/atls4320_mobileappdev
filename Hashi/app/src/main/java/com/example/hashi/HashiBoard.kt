@@ -8,14 +8,15 @@ import kotlin.random.Random
 // https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.random/-random/
 // https://developer.android.com/reference/kotlin/android/graphics/Matrix <- wrong type of Matrix
 // https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.math/
-// https://stackoverflow.com/a/34145673
+// https://stackoverflow.com/a/34145673 <- declare array in kotlin
 // https://www.geeksforgeeks.org/kotlin-array/
 // https://kotlinlang.org/docs/basic-types.html#arrays
 // https://kotlinlang.org/docs/control-flow.html#while-loops
-// https://kotlinlang.org/docs/coding-conventions.html#function-names <- but why
-// https://kotlinlang.org/docs/coding-conventions.html#function-names <- no ternary operator
+// https://kotlinlang.org/docs/coding-conventions.html#function-names <- no underscore
+// https://kotlinlang.org/docs/control-flow.html <- no ternary operator
 // https://www.appsdeveloperblog.com/create-imagebutton-kotlin-programmatically/
 // https://kotlin-android.com/kotlin-ranges/
+// https://www.techiedelight.com/print-two-dimensional-array-kotlin/
 
 class HashiBoard {
     private val numCols: Int = Random.nextInt(7, 10)
@@ -106,6 +107,10 @@ class HashiBoard {
     }
     private fun testNoTrappedThrees () : Boolean {
         // test that if a 3 occurs in a corner, its only neighbors are not 2 and 1
+        return false
+    }
+    private fun testNoTrappedFours () : Boolean {
+        // test that if a 4 occurs in a corner, its only neighbors are not 2's
         return false
     }
     private fun testExistsValidSolution () : Boolean {

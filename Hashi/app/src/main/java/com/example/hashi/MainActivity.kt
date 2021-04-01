@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             paint.strokeWidth = 4F // figure out what the size dimension is
             paint.isAntiAlias = true // figure out what this means
             // should set startX, startY, endX, endY to variables to leave this line static
-            canvas.drawLine(112.toFloat(), 80.toFloat(), (canvas.width - 112).toFloat(), 80.toFloat(), paint)
+            canvas.drawLine(524.toFloat(), 1200.toFloat(), (canvas.width - 112).toFloat(), 80.toFloat(), paint)
             bridgeLine.setImageBitmap(bitmap)
         })
 
