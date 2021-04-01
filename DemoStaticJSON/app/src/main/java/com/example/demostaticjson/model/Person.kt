@@ -1,4 +1,6 @@
 package com.example.demostaticjson.model
 
-class Person {
+// data class provides additional methods
+data class Person(val name:String, val info:String) {
+    //
 }
