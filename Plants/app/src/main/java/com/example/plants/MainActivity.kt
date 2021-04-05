@@ -1,6 +1,8 @@
 package com.example.plants
 
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +14,7 @@ import com.example.plants.R
 
 class MainActivity : AppCompatActivity() {
 
+    private var json = jsonHandler()
     var fulldata = ArrayList<Phyla>()
     private lateinit var ftrans: FragmentTransaction
     private lateinit var destination: Fragment
@@ -27,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         ftrans = fman.beginTransaction()
         destination = PlantTableFragment()
 
-        val fulldata = jsonHandler().getJSON(this)
+        val fulldata = json.getJSON(this)
         reloadPhyla(0) // initial view data
 
     }
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Log.i("Main:onOptions","entered module onOptionsItemSelected")
         when (item.itemId) {
             R.id.action_phylapterido -> {
                 reloadPhyla(0)
@@ -61,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun reloadPhyla(phy: Int) {
+        Log.i("Main:reloadPhyla", "entered module reloadPhyla")
         val bundle = Bundle()
         bundle.putString("phylaname", fulldata[phy].altname)
         bundle.putStringArrayList("phylamembers", fulldata[phy].members)
@@ -68,6 +73,6 @@ class MainActivity : AppCompatActivity() {
         destination.arguments = bundle
 //        ftrans.add(R.layout.plant_table, PlantTableFragment).commit()
 
-        val fragment = PlantTableFragment.newInstance(fulldata[phy].altname, fulldata[phy].members)
+//        val fragment = PlantTableFragment.newInstance(fulldata[phy].altname, fulldata[phy].members)
     }
 }
