@@ -34,7 +34,13 @@ class MainActivity : AppCompatActivity() {
             val editText = EditText(applicationContext)
             dialog.setView(editText)
             dialog.setTitle(R.string.addItem)
-            dialog.setPositiveButton(R.string.add)
+            dialog.setPositiveButton(R.string.add) { dialog, which ->
+                val newItem = editText.text.toString()
+                if (!newItem.isEmpty()) {
+                    viewModel.add(Item(newItem))
+//                    Snackbar.make("Item Added", Snackbar.LENGTH_LONG).setAction(R.string.action, null).show()
+                }
+            }
 
         }
 
