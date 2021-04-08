@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="orange_800">#ef6c00</color>
+    <color name="o800light">#ff9d3f</color>
+    <color name="o800dark">#b53d00</color>
+
+    <color name="brown_700">#5d4037</color>
+    <color name="b700light">#8b6b61</color>
+    <color name="b700dark">#321911</color>
 </resources>

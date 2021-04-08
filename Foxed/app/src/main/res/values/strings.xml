@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Foxed</string>
+    <string name="imgViewContentDescription">API Called Image</string>
+    <string name="buttonText">New Fox(es)</string>
 </resources>
