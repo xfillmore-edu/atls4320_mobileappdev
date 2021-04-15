@@ -37,14 +37,18 @@ class HashiBoard {
     }
 
     private fun proposeBoardSetup () : Array<IntArray> {
+        // decide starting number of nodes/islands
         val nNodes: Int = Random.nextInt(minNodes, maxNodes)
         var nodeValues = IntArray(nNodes) {0}
+
+        // create matrix map for node positions
         var newMap = Array(numRows) { mapCols }
 
         // determine the values of the nodes to be placed on map
         // increase probability of placing 2's and 3's on map, minimize probability of 5-8
         // 8 7 6 5 4 1 2 3
-        for (node in 0..nNodes) {
+        // .. operator is inclusive, until is exclusive
+        for (node in 0 until nNodes) {
             if (Random.nextInt(0, numCols * numRows) == 1) {
                 nodeValues[node] = 8
                 continue

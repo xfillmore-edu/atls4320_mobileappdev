@@ -10,8 +10,10 @@ import com.example.hashi.R.drawable.*
 // https://stackoverflow.com/a/59177156
 // https://developer.android.com/reference/kotlin/android/graphics/drawable/Drawable
 
-class HashiNode(val isVal: Int, isPosX: Int, isPosY: Int) {
+class HashiNode(val isIdentifier: Int, isPosX: Int, isPosY: Int) {
     val isLoc: IntArray = intArrayOf(isPosX, isPosY)
+    val isVal: Int = 0
+    var neighbors: IntArray = intArrayOf(0, 0, 0, 0)
 
     // get node's corresponding drawable resource to display
     // vary for light/dark theme
@@ -40,7 +42,7 @@ class HashiNode(val isVal: Int, isPosX: Int, isPosY: Int) {
 
     private var currentNumBridges = 0
     // N1 N2 E1 E2 S1 S2 W1 W2
-    private var expectedBridges: BooleanArray = booleanArrayOf(false, false, false, false, false, false, false, false)
+    var expectedBridges: BooleanArray = booleanArrayOf(false, false, false, false, false, false, false, false)
     private var linkedBridges: BooleanArray = booleanArrayOf(false, false, false, false, false, false, false, false)
 
     fun validateBridges () : Boolean {
