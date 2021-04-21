@@ -1,0 +1,35 @@
+// old save code
+
+// determine the values of the nodes to be placed on map
+        // increase probability of placing 2's and 3's on map, minimize probability of 5-8
+        // 8 7 6 5 4 1 2 3
+        // .. operator is inclusive, until is exclusive
+//        for (node in 0 until nNodes) {
+//            if (Random.nextInt(0, numCols * numRows) == 1) {
+//                nodeValues[node] = 8
+//                continue
+//            }
+//            else if (Random.nextInt(0, numCols*(numRows-2)) == 1) {
+//                nodeValues[node] = 7
+//                continue
+//            }
+//            else if (Random.nextInt(0, (numCols-2)*(numRows-2))==1) {
+//                nodeValues[node] = 6
+//                continue
+//            }
+//            else if (Random.nextInt(0, (numCols-4)*(numRows-4))==1) {
+//                nodeValues[node] = 5
+//                continue
+//            }
+//            else if (Random.nextInt(0, (numCols-5)*(numRows-5))==1) {
+//                nodeValues[node] = 4
+//                continue
+//            }
+//            else if (Random.nextInt(0, (numCols-6)*(numRows-5))==1) {
+//                nodeValues[node] = 1
+//                continue
+//            }
+//            else {
+//                nodeValues[node] = if(Random.nextBoolean()) 3 else 2
+//            }
+//        }

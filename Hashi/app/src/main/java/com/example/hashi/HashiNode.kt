@@ -13,7 +13,7 @@ import com.example.hashi.R.drawable.*
 class HashiNode(val isIdentifier: Int, isPosX: Int, isPosY: Int) {
     val isLoc: IntArray = intArrayOf(isPosX, isPosY)
     val isVal: Int = 0
-    var neighbors: IntArray = intArrayOf(0, 0, 0, 0)
+    var neighbors: IntArray = intArrayOf(-1, -1, -1, -1) // N E S W
 
     // get node's corresponding drawable resource to display
     // vary for light/dark theme
