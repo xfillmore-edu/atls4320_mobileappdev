@@ -32,7 +32,7 @@ class RVAdapter (private val supplyViewModel: SupplyViewModel): RecyclerView.Ada
         holder.textV.text = supply?.name ?: "" // cheating ternary
 
         // context menu (long press to delete)
-        holder.itemView.setOnCreateContextMenuListener() {menu, view, menuInfo ->
+        holder.itemView.setOnCreateContextMenuListener() {menu, view, _ ->
             menu.setHeaderTitle(R.string.using)
             menu.add(R.string.use).setOnMenuItemClickListener {
                 // remove from view model
