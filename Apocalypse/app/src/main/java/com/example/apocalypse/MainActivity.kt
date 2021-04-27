@@ -7,18 +7,58 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.apocalypse.model.Item
+import com.example.apocalypse.model.SupplyViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val supplyViewModel: SupplyViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        // recycler view setup
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        val adapter = RVAdapter(supplyViewModel)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+
+            // alert dialog with text field for new item
+            val dialog = AlertDialog.Builder(this)
+            val editText = EditText(applicationContext)
+            dialog.setView(editText)
+            dialog.setTitle(R.string.adding)
+
+            dialog.setPositiveButton(R.string.confirm) { dialog, _ ->
+                val newSupply = editText.text.toString()
+                if (newSupply.isNotEmpty()) {
+                    supplyViewModel.packSupply(Item(newSupply))
+
+                    Snackbar.make(view, R.string.added, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.action, null).show()
+                }
+            }
+            dialog.setNegativeButton(R.string.cancel) { dialog, _ -> }
+
+            dialog.show()
         }
+
+        // LiveData observer
+        supplyViewModel.supplyList.observe(this, Observer {
+            adapter.update()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
