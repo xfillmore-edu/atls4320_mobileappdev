@@ -1,4 +1,5 @@
 package com.example.apocalypse
+// an app for monitoring your supplies during an apocalypse
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
