@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             dialog.setView(editText)
             dialog.setTitle(R.string.adding)
 
-            dialog.setPositiveButton(R.string.confirm) { dialog, _ ->
+            dialog.setPositiveButton(R.string.confirm) { _, _ ->
                 val newSupply = editText.text.toString()
                 if (newSupply.isNotEmpty()) {
                     supplyViewModel.packSupply(Item(newSupply))
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                         .setAction(R.string.action, null).show()
                 }
             }
-            dialog.setNegativeButton(R.string.cancel) { dialog, _ -> }
+            dialog.setNegativeButton(R.string.cancel) { _, _ -> }
 
             dialog.show()
         }
@@ -58,7 +58,13 @@ class MainActivity : AppCompatActivity() {
         // LiveData observer
         supplyViewModel.supplyList.observe(this, Observer {
             adapter.update()
+            supplyViewModel.saveData()
         })
+
+        // shared preferences data management
+        if (supplyViewModel.supplyList.value == null) {
+            supplyViewModel.loadData()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
