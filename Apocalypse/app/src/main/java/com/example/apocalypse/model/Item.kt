@@ -1,3 +1,3 @@
 package com.example.apocalypse.model
 
-data class Item()
+data class Item(val name: String) { }
