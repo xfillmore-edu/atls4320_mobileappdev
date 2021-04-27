@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name='radiation_yellow'>#ffea35</color>
+    <color name='biohazard_red'>#8F2904</color>
 </resources>
