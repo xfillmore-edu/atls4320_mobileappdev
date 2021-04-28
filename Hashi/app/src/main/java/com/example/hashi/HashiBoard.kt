@@ -18,8 +18,11 @@ import kotlin.random.Random
 // https://kotlin-android.com/kotlin-ranges/
 // https://www.techiedelight.com/print-two-dimensional-array-kotlin/
 // https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/down-to.html
+// https://developer.android.com/reference/android/view/WindowMetrics#getBounds()
+// https://kotlinlang.org/docs/collection-filtering.html#test-predicates
 
 class HashiBoard {
+    // assumes vertical/portrait orientation as default
     private val numCols: Int = Random.nextInt(7, 10)
     private val numRows: Int = Random.nextInt(7, 12)
 
@@ -31,7 +34,7 @@ class HashiBoard {
         val minNodes: Int = (numCols * numRows) / 7
 
         var mapCols = IntArray(numCols) { -1 } // create array of <numCols> -1's
-//        var numericMap = Array(numRows) { mapCols } // stack the columns into <numRows> rows
+        var boardByIdentifiers = Array(numRows) { mapCols } // stack the columns into <numRows> rows
 
         do {
             Log.i("Board Gen", "Attempting new board proposal")
@@ -39,7 +42,12 @@ class HashiBoard {
             nodeMap = proposeBoardSetup(minNodes, maxNodes, mapCols)
         } while (!runTestSuite())
 
-        // turn numericMap into 2D Array/Matrix of HashiNodes
+        // get screen size...?
+
+        // need clickable images
+        // display board according to grid
+
+        // grid view?
     }
 
     private fun proposeBoardSetup (minNodes: Int, maxNodes: Int, mapCols: IntArray) : List<HashiNode> {
@@ -92,9 +100,6 @@ class HashiBoard {
                 newMap[yind][xind] = newNode.isIdentifier
             }
         } // end for loop: attempt to create a node up to the maximum number allowed
-
-        // update nNodes to the number of nodes that were successfully placed
-        nNodes = nodeTrackingList.size
 
         // ========= 3. assign edges ================== //
         // ========= 4. remove lonely ================= //
@@ -256,6 +261,13 @@ class HashiBoard {
                 } // end if: check already bridged
             } // end if: bridge left neighbor
 
+            // check if no bridges were built for node
+            // mark it for removal
+            if (lonely.expectedBridges.none{ it }) {
+                removeIndices.add(deleteIndex)
+                continue
+            }
+
 
 
         } // end for loop: main bridge building for each node
@@ -266,6 +278,12 @@ class HashiBoard {
             nodeTrackingList.removeAt(delIndex)
         }
 
+        // Incomplete board: Hashi rule that all nodes are interconnected
+        // use trace test?
+
+        // ==================================================== //
+        // ============ 6. Island values ====================== //
+        // ==================================================== //
         // assign nodes their island values based on their bridges
         for (island in nodeTrackingList) {
             var value = 0
@@ -276,19 +294,20 @@ class HashiBoard {
         }
 
         return nodeTrackingList
+        // nodeTrackingList.size is the number of successfully placed islands
     } // end function: proposeBoardSetup
 
     private fun runTestSuite() : Boolean {
-//        return (
+        return (
 //            testNoDirectNeighbors() &&
 //            testValidCorners() &&
 //            testValidWalls() &&
 //            testNoOnesByEights() &&
 //            testNoTrappedThrees() &&
 //            testNoTrappedFours() &&
-//            testExistsValidSolution()
-//        )
-        return true // placeholder. should return false by default
+            testExistsValidSolution()
+        )
+//        return true // placeholder
     }
     // test proposed board: return false if fails test
     // then create new proposal for setup and re-test
@@ -319,6 +338,60 @@ class HashiBoard {
     private fun testExistsValidSolution () : Boolean {
         // confirm that the board has a solution
         // all nodes must be able to connect into one unit
+
+        // use nodeMap + graph checking algorithm
+        // node.neighbors[i].isIdentifier
+
+        // start at fist node, mark visited
+        // go to one neighbor, mark visited
+        // depth first search: continue down the connected neighbors
+        // when all neighbors of a node are visited, return up a level
+
+        // set up graph checker
+        data class TempNode (val id: Int, var visited: Boolean) {}
+        val checker = mutableSetOf<TempNode>()
+        for (node in nodeMap) {
+            checker.add(TempNode(node.isIdentifier, false))
+        }
+
+        // set up depth first search
+        fun dfs (node: HashiNode) {
+            val thisNode = checker.find { it.id == node.isIdentifier }
+
+            if (thisNode != null) {
+                // mark current node as visited
+                thisNode.visited = true
+
+                // recursively visit neighbors
+                for (neighbor in node.neighbors) {
+                    if (neighbor != -1) {
+                        val nb = nodeMap.find { it.isIdentifier == neighbor }
+                        if (nb != null) {
+                            val cnb = checker.find { it.id == neighbor }
+                            if (!cnb?.visited!!) {
+                                dfs(nb)
+                            }
+                        }
+                        else {
+                            Log.e("Testing_DFS", "Unable to locate neighbor node")
+                        }
+                    }
+                }
+            }
+            else {
+                Log.e("Testing_DFS", "Unable to locate node in checker")
+            }
+        } // end local function: dfs
+
+        // run recursion to mark visited nodes
+        dfs(nodeMap[0])
+
+        // check if all nodes were visited
+        if (checker.all { it.visited }) {
+            return true
+        }
+
+        // default condition
         return false
     }
 }
