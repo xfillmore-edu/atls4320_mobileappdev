@@ -184,6 +184,9 @@ class HashiBoard {
 
                     // mark map with the bridge (using -2)
                     // above current node, below neighbor node
+                    for (bridgeSegment in nextUpNeighbor+1 until irow) {
+                        newMap[bridgeSegment][jcol] = -2
+                    }
                     
                 }
 
@@ -205,6 +208,9 @@ class HashiBoard {
 
                     // mark map with the bridge (using -2)
                     // right of current node, left of neighbor node
+                    for (bridgeSegment in jcol+1 until nextRightNeighbor) {
+                        newMap[irow][bridgeSegment] = -2
+                    }
                 }
 
 
@@ -225,6 +231,9 @@ class HashiBoard {
 
                     // mark map with the bridge (using -2)
                     // below current node, above neighbor node
+                    for (bridgeSegment in irow+1 until nextDownNeighbor) {
+                        newMap[bridgeSegment][jcol] = -2
+                    }
                 }
 
 
@@ -246,6 +255,9 @@ class HashiBoard {
 
                     // mark map with the bridge (using -2)
                     // left of current node, right of neighbor node
+                    for (bridgeSegment in nextLeftNeighbor+1 until jcol) {
+                        newMap[irow][bridgeSegment] = -2
+                    }
                 }
 
 
