@@ -83,7 +83,7 @@ class HashiBoard {
                     skipflag = true
                     break
                 }
-            }
+            } // end for loop: check proposed position against existing node positions
 
             // create node if position deemed valid with id value <homeless>
             if (!skipflag) {
@@ -91,7 +91,7 @@ class HashiBoard {
                 nodeTrackingList.add(newNode)
                 newMap[yind][xind] = newNode.isIdentifier
             }
-        }
+        } // end for loop: attempt to create a node up to the maximum number allowed
 
         // update nNodes to the number of nodes that were successfully placed
         nNodes = nodeTrackingList.size
@@ -110,12 +110,14 @@ class HashiBoard {
             var nextUpNeighbor = -1
             var nextDownNeighbor = -1
 
-            // find its neighbors
+            // get current row and column of "lonely" node
             val ccol = IntArray(numRows)
             for ((index, el) in newMap.withIndex()) {
                 ccol[index] = el[jcol]
             }
             val crow = newMap[irow]
+
+            // find its neighbors
 
             // going right
             if (jcol < ccol.size-1) {
@@ -187,11 +189,8 @@ class HashiBoard {
                     for (bridgeSegment in nextUpNeighbor+1 until irow) {
                         newMap[bridgeSegment][jcol] = -2
                     }
-                    
-                }
-
-
-            }
+                } // end if: check already bridged
+            } // end if: bridge up neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextRightNeighbor > -1) && (numBridges > 0)) {
                 lonely.neighbors[1] = nextRightNeighbor
@@ -211,10 +210,8 @@ class HashiBoard {
                     for (bridgeSegment in jcol+1 until nextRightNeighbor) {
                         newMap[irow][bridgeSegment] = -2
                     }
-                }
-
-
-            }
+                } // end if: check already bridged
+            } // end if: bridge right neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextDownNeighbor > -1) && (numBridges > 0)) {
                 lonely.neighbors[2] = nextDownNeighbor
@@ -234,10 +231,8 @@ class HashiBoard {
                     for (bridgeSegment in irow+1 until nextDownNeighbor) {
                         newMap[bridgeSegment][jcol] = -2
                     }
-                }
-
-
-            }
+                } // end if: check already bridged
+            } // end if: bridge down neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextLeftNeighbor > -1) && (numBridges > 0)) {
                 lonely.neighbors[3] = nextLeftNeighbor
@@ -258,14 +253,12 @@ class HashiBoard {
                     for (bridgeSegment in nextLeftNeighbor+1 until jcol) {
                         newMap[irow][bridgeSegment] = -2
                     }
-                }
-
-
-            }
+                } // end if: check already bridged
+            } // end if: bridge left neighbor
 
 
 
-        } // end main bridge building for loop
+        } // end for loop: main bridge building for each node
 
         // remove isolated nodes from nodeList
         // should probably go backwards so indexing isn't affected by changing nodeList
@@ -283,7 +276,7 @@ class HashiBoard {
         }
 
         return nodeTrackingList
-    }
+    } // end function: proposeBoardSetup
 
     private fun runTestSuite() : Boolean {
 //        return (
@@ -295,7 +288,7 @@ class HashiBoard {
 //            testNoTrappedFours() &&
 //            testExistsValidSolution()
 //        )
-        return true
+        return true // placeholder. should return false by default
     }
     // test proposed board: return false if fails test
     // then create new proposal for setup and re-test
