@@ -1,5 +1,6 @@
 package com.example.hashi
 
+import android.util.Log
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
@@ -22,21 +23,26 @@ class HashiBoard {
     private val numCols: Int = Random.nextInt(7, 10)
     private val numRows: Int = Random.nextInt(7, 12)
 
-    private val maxNodes: Int = (numCols * numRows) / 2
-    private val minNodes: Int = (numCols * numRows) / 7
-
-    private var mapCols = IntArray(numCols) { -1 } // create array of <numCols> -1's
-    private var numericMap = Array(numRows) { mapCols } // stack the columns into <numRows> rows
+    lateinit var nodeMap: List<HashiNode>
 
     fun createGameBoard() {
+
+        val maxNodes: Int = (numCols * numRows) / 2
+        val minNodes: Int = (numCols * numRows) / 7
+
+        var mapCols = IntArray(numCols) { -1 } // create array of <numCols> -1's
+//        var numericMap = Array(numRows) { mapCols } // stack the columns into <numRows> rows
+
         do {
-            numericMap = proposeBoardSetup()
+            Log.i("Board Gen", "Attempting new board proposal")
+            // returns list of nodes
+            nodeMap = proposeBoardSetup(minNodes, maxNodes, mapCols)
         } while (!runTestSuite())
 
         // turn numericMap into 2D Array/Matrix of HashiNodes
     }
 
-    private fun proposeBoardSetup () : Array<IntArray> {
+    private fun proposeBoardSetup (minNodes: Int, maxNodes: Int, mapCols: IntArray) : List<HashiNode> {
         // decide starting number of nodes/islands
         var nNodes: Int = Random.nextInt(minNodes, maxNodes)
 //        var nodeValues = IntArray(nNodes) {0}
@@ -94,7 +100,8 @@ class HashiBoard {
         // ========= 4. remove lonely ================= //
         // ========= 5. generate bridges ============== //
         // use node.expectedBridges [f, f, f, f, f, f, f, f]
-        for (lonely in nodeTrackingList) {
+        var removeIndices = mutableListOf<Int>()
+        for ((deleteIndex, lonely) in nodeTrackingList.withIndex()) {
             val jcol = lonely.isLoc[0]
             val irow = lonely.isLoc[1]
 
@@ -147,6 +154,14 @@ class HashiBoard {
                 }
             }
 
+            // check if node has no neighbors. Mark it for removal then continue to next node
+            if ((nextLeftNeighbor == -1) && (nextUpNeighbor == -1) &&
+                (nextDownNeighbor == -1) && (nextRightNeighbor == -1)) {
+
+                removeIndices.add(deleteIndex)
+                continue
+            }
+
 
             // exchange neighborly information
             // randomly decide whether to establish 0, 1, or 2 bridge(s)
@@ -166,10 +181,13 @@ class HashiBoard {
                         lonely.expectedBridges[1] = true
                         nodeTrackingList[nextUpNeighbor].expectedBridges[5] = true
                     }
+
+                    // mark map with the bridge (using -2)
+                    // above current node, below neighbor node
+                    
                 }
 
-                // mark map with the bridge (using -2)
-                //
+
             }
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextRightNeighbor > -1) && (numBridges > 0)) {
@@ -184,10 +202,12 @@ class HashiBoard {
                         lonely.expectedBridges[3] = true
                         nodeTrackingList[nextRightNeighbor].expectedBridges[7] = true
                     }
+
+                    // mark map with the bridge (using -2)
+                    // right of current node, left of neighbor node
                 }
 
-                // mark map with the bridge (using -2)
-                //
+
             }
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextDownNeighbor > -1) && (numBridges > 0)) {
@@ -202,10 +222,12 @@ class HashiBoard {
                         lonely.expectedBridges[5] = true
                         nodeTrackingList[nextDownNeighbor].expectedBridges[1] = true
                     }
+
+                    // mark map with the bridge (using -2)
+                    // below current node, above neighbor node
                 }
 
-                // mark map with the bridge (using -2)
-                //
+
             }
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextLeftNeighbor > -1) && (numBridges > 0)) {
@@ -213,6 +235,7 @@ class HashiBoard {
                 nodeTrackingList[nextLeftNeighbor].neighbors[1] = lonely.isIdentifier
 
                 // check if bridge already built between these two islands
+                // if not, establish bridge
                 if (!lonely.expectedBridges[6]) {
                     lonely.expectedBridges[6] = true
                     nodeTrackingList[nextLeftNeighbor].expectedBridges[2] = true
@@ -220,18 +243,34 @@ class HashiBoard {
                         lonely.expectedBridges[7] = true
                         nodeTrackingList[nextLeftNeighbor].expectedBridges[3] = true
                     }
+
+                    // mark map with the bridge (using -2)
+                    // left of current node, right of neighbor node
                 }
 
-                // mark map with the bridge (using -2)
-                //
+
             }
 
 
 
+        } // end main bridge building for loop
+
+        // remove isolated nodes from nodeList
+        // should probably go backwards so indexing isn't affected by changing nodeList
+        for (delIndex in removeIndices.reversed()) {
+            nodeTrackingList.removeAt(delIndex)
         }
 
+        // assign nodes their island values based on their bridges
+        for (island in nodeTrackingList) {
+            var value = 0
+            for (bridge in island.expectedBridges) {
+                if (bridge) { value += 1 }
+            }
+            island.isVal = value
+        }
 
-        return newMap
+        return nodeTrackingList
     }
 
     private fun runTestSuite() : Boolean {
