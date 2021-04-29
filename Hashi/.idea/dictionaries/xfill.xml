@@ -2,6 +2,8 @@
   <dictionary name="xfill">
     <words>
       <w>hashi</w>
+      <w>irow</w>
+      <w>jcol</w>
     </words>
   </dictionary>
 </component>
