@@ -23,8 +23,10 @@ import kotlin.random.Random
 
 class HashiBoard {
     // assumes vertical/portrait orientation as default
-    private val numCols: Int = Random.nextInt(7, 10)
-    private val numRows: Int = Random.nextInt(7, 12)
+    val numCols: Int = Random.nextInt(7, 10)
+    val numRows: Int = Random.nextInt(7, 12)
+    private val mapCols = IntArray(numCols) { -1 } // create array of <numCols> -1's
+    var boardByIdentifiers = Array(numRows) { mapCols } // stack the columns into <numRows> rows
 
     lateinit var nodeMap: List<HashiNode>
 
@@ -33,13 +35,10 @@ class HashiBoard {
         val maxNodes: Int = (numCols * numRows) / 2
         val minNodes: Int = (numCols * numRows) / 7
 
-        var mapCols = IntArray(numCols) { -1 } // create array of <numCols> -1's
-        var boardByIdentifiers = Array(numRows) { mapCols } // stack the columns into <numRows> rows
-
         do {
-            Log.i("Board Gen", "Attempting new board proposal")
+            Log.i("Board", "Attempting new board proposal")
             // returns list of nodes
-            nodeMap = proposeBoardSetup(minNodes, maxNodes, mapCols)
+            nodeMap = proposeBoardSetup(minNodes, maxNodes)
         } while (!runTestSuite())
 
         // get screen size...?
@@ -50,9 +49,9 @@ class HashiBoard {
         // grid view?
     }
 
-    private fun proposeBoardSetup (minNodes: Int, maxNodes: Int, mapCols: IntArray) : List<HashiNode> {
+    private fun proposeBoardSetup (minNodes: Int, maxNodes: Int) : List<HashiNode> {
         // decide starting number of nodes/islands
-        var nNodes: Int = Random.nextInt(minNodes, maxNodes)
+        val nNodes: Int = Random.nextInt(minNodes, maxNodes)
 //        var nodeValues = IntArray(nNodes) {0}
         val nodeTrackingList = mutableListOf <HashiNode>()
 
@@ -98,6 +97,7 @@ class HashiBoard {
                 val newNode = HashiNode(nodeTrackingList.size, xind, yind)
                 nodeTrackingList.add(newNode)
                 newMap[yind][xind] = newNode.isIdentifier
+                Log.i("Board_propose", "Established node ${newNode.isIdentifier} at r${yind}c${xind}")
             }
         } // end for loop: attempt to create a node up to the maximum number allowed
 
@@ -105,7 +105,7 @@ class HashiBoard {
         // ========= 4. remove lonely ================= //
         // ========= 5. generate bridges ============== //
         // use node.expectedBridges [f, f, f, f, f, f, f, f]
-        var removeIndices = mutableListOf<Int>()
+        val removeIndices = mutableListOf<Int>()
         for ((deleteIndex, lonely) in nodeTrackingList.withIndex()) {
             val jcol = lonely.isLoc[0]
             val irow = lonely.isLoc[1]
@@ -166,6 +166,7 @@ class HashiBoard {
                 (nextDownNeighbor == -1) && (nextRightNeighbor == -1)) {
 
                 removeIndices.add(deleteIndex)
+                newMap[irow][jcol] = -1
                 continue
             }
 
@@ -265,10 +266,9 @@ class HashiBoard {
             // mark it for removal
             if (lonely.expectedBridges.none{ it }) {
                 removeIndices.add(deleteIndex)
+                newMap[irow][jcol] = -1
                 continue
             }
-
-
 
         } // end for loop: main bridge building for each node
 
@@ -278,8 +278,10 @@ class HashiBoard {
             nodeTrackingList.removeAt(delIndex)
         }
 
-        // Incomplete board: Hashi rule that all nodes are interconnected
-        // use trace test?
+        // update numeric mapping
+        boardByIdentifiers = newMap
+
+        // Hashi rule that all nodes are interconnected: use trace test
 
         // ==================================================== //
         // ============ 6. Island values ====================== //
@@ -342,7 +344,7 @@ class HashiBoard {
         // use nodeMap + graph checking algorithm
         // node.neighbors[i].isIdentifier
 
-        // start at fist node, mark visited
+        // start at first node, mark visited
         // go to one neighbor, mark visited
         // depth first search: continue down the connected neighbors
         // when all neighbors of a node are visited, return up a level

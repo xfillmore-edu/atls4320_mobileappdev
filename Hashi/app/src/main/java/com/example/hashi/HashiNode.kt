@@ -14,6 +14,7 @@ class HashiNode(val isIdentifier: Int, isPosX: Int, isPosY: Int) {
     val isLoc: IntArray = intArrayOf(isPosX, isPosY)
     var isVal: Int = 0
     var neighbors: IntArray = intArrayOf(-1, -1, -1, -1) // N E S W
+    var isSelected = false
 
     // get node's corresponding drawable resource to display
     // vary for light/dark theme
@@ -26,7 +27,7 @@ class HashiNode(val isIdentifier: Int, isPosX: Int, isPosY: Int) {
         6 -> hashi_is6_256grey
         7 -> hashi_is7_256grey
         8 -> hashi_is8_256grey
-        else -> hashi_is0_256grey
+        else -> hashi_blankgrid
     }
     val isDisplayOnDark: Int = when (isVal) {
         1 -> hashi_is1_256ylw
@@ -37,7 +38,7 @@ class HashiNode(val isIdentifier: Int, isPosX: Int, isPosY: Int) {
         6 -> hashi_is6_256ylw
         7 -> hashi_is7_256ylw
         8 -> hashi_is8_256ylw
-        else -> hashi_is0_256ylw
+        else -> hashi_blankgrid
     }
 
     private var currentNumBridges = 0
