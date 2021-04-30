@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -44,8 +45,10 @@ class MainActivity : AppCompatActivity() {
         // helper function to check if device is using dark mode/theme
         fun isDark(activity: MainActivity) : Boolean {
             Log.i("Main_boardSetup", "Checking if dark mode")
-            return activity.resources.configuration.uiMode and
-                    Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            // gives error: Attempt to invoke virtual method on null object reference
+            return false
+//            return activity.resources.configuration.uiMode and
+//                    Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
         }
 
         val gameTable : TableLayout = findViewById(R.id.tableLayout)
@@ -59,28 +62,35 @@ class MainActivity : AppCompatActivity() {
 
                 // determine appropriate image content for grid position
                 val gridLocId = nMap[r][c]
-                var drawableId : Int
+                Log.i("Main_boardSetup", "Grid location id: $gridLocId")
+                var drawableId : Int = R.drawable.hashi_is0_256grey
                 if (gridLocId < 0) { // bridge or blank
+                    Log.i("Main_boardSetup", "Placing blank tile at location")
                     drawableId = R.drawable.hashi_blankgrid
                 }
                 else {
                     // get node
+                    Log.i("Main_boardSetup", "Attempting to locate node at $r $c")
                     val rcNode = nodes.find { it.isLoc.contentEquals(intArrayOf(c, r)) }
-                    drawableId = if (rcNode != null) {
+                    if (rcNode != null) {
                         Log.i("Main_boardSetup", "Assigning island ${rcNode.isIdentifier} to r${r}c${c}")
-                        if (isDark(MainActivity())) {
+                        drawableId = if (isDark(MainActivity())) {
                             rcNode.isDisplayOnDark
                         } else {
                             rcNode.isDisplayOnLight
                         }
-                    } else {
-                        Log.e("Main_boardSetup", "Unable to locate requested node")
-                        R.drawable.hashi_is0_256grey
+                    }
+//                    else if (it.isLoc[0] != c || ) {
+//                        //
+//                    }
+                    else {
+                        Log.i("Main_boardSetup", "----Node not at r${r}c${c}")
+                        // R.drawable.hashi_is0_256grey
                     }
                     imgAtGrid.isClickable = true
-                    imgAtGrid.setOnClickListener {
+                    imgAtGrid.setOnClickListener { view ->
                         if (rcNode != null) {
-                            selectIsland(rcNode)
+                            selectIsland(view, rcNode)
                         }
                     }
                 }
@@ -102,8 +112,10 @@ class MainActivity : AppCompatActivity() {
     // case 2: selected same island as first selection -> deselect
     // case 3: selected neighboring island to first selection -> attempt bridge
     // case 4: selected non-neighboring island to first selection -> reselect
-    private fun selectIsland (node: HashiNode) {
+    private fun selectIsland (view: View, node: HashiNode) {
         if (node.isSelected) {
+            Snackbar.make(view, "Cleared selection", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
             node.isSelected = false
             return
         }
@@ -114,6 +126,8 @@ class MainActivity : AppCompatActivity() {
                 // check if it is a neighbor
                 for ((dir, nb) in node.neighbors.withIndex()) {
                     if (n.isIdentifier == nb) {
+                        Snackbar.make(view, "Selected neighbor", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show()
                         // dirs: N E S W
                         // node is neighbor to a selected node
                         // get direction as string
@@ -132,6 +146,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 // node is not a neighbor: reselect
+                Snackbar.make(view, "Selected new node", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
                 n.isSelected = false
                 node.isSelected = true
 
@@ -140,6 +156,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // no nodes selected
+        Snackbar.make(view, "Selected node as first selection", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
         node.isSelected = true
 
     }

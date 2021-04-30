@@ -25,38 +25,33 @@ class HashiBoard {
     // assumes vertical/portrait orientation as default
     val numCols: Int = Random.nextInt(7, 10)
     val numRows: Int = Random.nextInt(7, 12)
-    private val mapCols = IntArray(numCols) { -1 } // create array of <numCols> -1's
-    var boardByIdentifiers = Array(numRows) { mapCols } // stack the columns into <numRows> rows
+    var boardByIdentifiers = Array(numRows) { IntArray(numCols) { -1 } } // stack the columns into <numRows> rows
 
     lateinit var nodeMap: List<HashiNode>
 
     fun createGameBoard() {
 
         val maxNodes: Int = (numCols * numRows) / 2
-        val minNodes: Int = (numCols * numRows) / 7
+        val minNodes: Int = (numCols * numRows) / 4
 
         do {
-            Log.i("Board", "Attempting new board proposal")
+            Log.i("Board_create", "Attempting new board proposal for $numRows x $numCols")
             // returns list of nodes
             nodeMap = proposeBoardSetup(minNodes, maxNodes)
         } while (!runTestSuite())
 
         // get screen size...?
-
-        // need clickable images
-        // display board according to grid
-
-        // grid view?
     }
 
     private fun proposeBoardSetup (minNodes: Int, maxNodes: Int) : List<HashiNode> {
         // decide starting number of nodes/islands
         val nNodes: Int = Random.nextInt(minNodes, maxNodes)
+        Log.i("Board_propose", "Requested $nNodes nodes")
 //        var nodeValues = IntArray(nNodes) {0}
         val nodeTrackingList = mutableListOf <HashiNode>()
 
         // create matrix map for node positions
-        val newMap = Array(numRows) { mapCols }
+        val newMap = Array(numRows) { IntArray(numCols) { -1 } }
 
         // 1. place nNodes islands on matrix board
         // 2. remove any adjacent islands
@@ -96,10 +91,16 @@ class HashiBoard {
             if (!skipflag) {
                 val newNode = HashiNode(nodeTrackingList.size, xind, yind)
                 nodeTrackingList.add(newNode)
-                newMap[yind][xind] = newNode.isIdentifier
+                (newMap[yind])[xind] = newNode.isIdentifier
                 Log.i("Board_propose", "Established node ${newNode.isIdentifier} at r${yind}c${xind}")
             }
         } // end for loop: attempt to create a node up to the maximum number allowed
+
+        Log.i("Board_propose", "========== CURRENT MAPPING: =================")
+        for (i in newMap.indices) {
+            Log.i("Board_propose", newMap[i].contentToString())
+        }
+
 
         // ========= 3. assign edges ================== //
         // ========= 4. remove lonely ================= //
@@ -116,45 +117,60 @@ class HashiBoard {
             var nextDownNeighbor = -1
 
             // get current row and column of "lonely" node
-            val ccol = IntArray(numRows)
-            for ((index, el) in newMap.withIndex()) {
-                ccol[index] = el[jcol]
+            Log.i("Board_propose", "Getting current row $irow and column $jcol of node")
+            val ccol = IntArray(numCols)
+            for (rowindex in 0 until numCols) {
+                val nodeRow = newMap[rowindex]
+                Log.i("Board_propose", "Current row: ${nodeRow.contentToString()}")
+                ccol[rowindex] = nodeRow[jcol]
             }
             val crow = newMap[irow]
+            Log.i("Board_propose", "---col ${ccol.contentToString()}")
+            Log.i("Board_propose", "---row ${crow.contentToString()}")
 
             // find its neighbors
+            // check if it is against an edge
+            Log.i("Board_propose", "Finding neighbors of node ${lonely.isIdentifier}")
 
             // going right
-            if (jcol < ccol.size-1) {
+            if (jcol < ccol.size-2) {
                 for (iter in jcol+1 until ccol.size) {
+//                    Log.i("Board_propose", "--Checking for rightward neighbor at index c$iter")
                     if (ccol[iter] > -1) {
+                        Log.i("Board_propose", "----Found rightward neighbor at index c$iter.")
                         nextRightNeighbor = iter
                         break
                     }
                 }
             }
             // going left
-            if (jcol > 0) {
-                for (iter in jcol-1 downTo 0) {
+            if (jcol > 1) {
+                for (iter in (jcol-1 downTo 0)) {
+//                    Log.i("Board_propose", "--Checking for leftward neighbor at index c$iter")
                     if (ccol[iter] > -1) {
+                        Log.i("Board_propose", "----Found leftward neighbor at c$iter.")
                         nextLeftNeighbor = iter
                         break
                     }
                 }
             }
             // going up
-            if (irow > 0) {
+            if (irow > 1) { // not the top/first row
                 for (iter in irow-1 downTo 0) {
+//                    Log.i("Board_propose", "--Checking for upward neighbor at index r$iter")
                     if (crow[iter] > -1) {
+                        Log.i("Board_propose", "----Found upward neighbor at r$iter.")
                         nextUpNeighbor = iter
                         break
                     }
                 }
             }
-            // going down
-            if (irow < crow.size-1) {
+            // going down // not the last row
+            if (irow < crow.size-2) {
                 for (iter in irow+1 until crow.size) {
+//                    Log.i("Board_propose", "--Checking for downward neighbor at index r$iter")
                     if (crow[iter] > -1) {
+                        Log.i("Board_propose", "----Found downward neighbor at r$iter.")
                         nextDownNeighbor = iter
                         break
                     }
@@ -167,6 +183,7 @@ class HashiBoard {
 
                 removeIndices.add(deleteIndex)
                 newMap[irow][jcol] = -1
+                Log.i("Board_propose", "Tagging node ${lonely.isIdentifier} for removal (no neighbors)")
                 continue
             }
 
@@ -175,6 +192,7 @@ class HashiBoard {
             // randomly decide whether to establish 0, 1, or 2 bridge(s)
             // mark map with -2 where bridges are drawn to prevent overlap
             // up up right right down down left left
+            Log.i("Board_propose", "Generating bridges for node ${lonely.isIdentifier}")
             val mockWeightedBridging = intArrayOf(0, 1, 1, 2)
             var numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextUpNeighbor > -1) && (numBridges > 0)) {
@@ -267,6 +285,7 @@ class HashiBoard {
             if (lonely.expectedBridges.none{ it }) {
                 removeIndices.add(deleteIndex)
                 newMap[irow][jcol] = -1
+                Log.i("Board_propose", "Tagging node ${lonely.isIdentifier} for removal")
                 continue
             }
 
@@ -375,13 +394,13 @@ class HashiBoard {
                             }
                         }
                         else {
-                            Log.e("Testing_DFS", "Unable to locate neighbor node")
+                            Log.e("Testing_DFS", "Unable to locate neighbor node with id $neighbor")
                         }
                     }
                 }
             }
             else {
-                Log.e("Testing_DFS", "Unable to locate node in checker")
+                Log.e("Testing_DFS", "Unable to locate node in dfs checker")
             }
         } // end local function: dfs
 
