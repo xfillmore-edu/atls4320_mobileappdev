@@ -96,10 +96,12 @@ class HashiBoard {
             }
         } // end for loop: attempt to create a node up to the maximum number allowed
 
+        //========== debug purposes only ================== //
         Log.i("Board_propose", "========== CURRENT MAPPING: =================")
         for (i in newMap.indices) {
             Log.i("Board_propose", newMap[i].contentToString())
         }
+        // ================================================ //
 
 
         // ========= 3. assign edges ================== //
@@ -111,70 +113,86 @@ class HashiBoard {
             val jcol = lonely.isLoc[0]
             val irow = lonely.isLoc[1]
 
-            var nextLeftNeighbor = -1
-            var nextRightNeighbor = -1
-            var nextUpNeighbor = -1
-            var nextDownNeighbor = -1
+            var nextLeftNeighbor = lonely.neighbors[3]
+            var nextRightNeighbor = lonely.neighbors[1]
+            var nextUpNeighbor = lonely.neighbors[0]
+            var nextDownNeighbor = lonely.neighbors[2]
 
             // get current row and column of "lonely" node
-            Log.i("Board_propose", "Getting current row $irow and column $jcol of node")
-            val ccol = IntArray(numCols)
-            for (rowindex in 0 until numCols) {
-                val nodeRow = newMap[rowindex]
-                Log.i("Board_propose", "Current row: ${nodeRow.contentToString()}")
-                ccol[rowindex] = nodeRow[jcol]
+//            Log.i("Board_propose", "Getting current row $irow and column $jcol of node")
+            // a column contains the number of rows
+            // a row contains the number of columns
+            val ccol = IntArray(numRows)
+            for (rowindex in 0 until numRows) {
+//                val nodeRow = newMap[rowindex]
+//                Log.i("Board_propose", "Current row: ${nodeRow.contentToString()}")
+                ccol[rowindex] = (newMap[rowindex])[jcol]
             }
             val crow = newMap[irow]
-            Log.i("Board_propose", "---col ${ccol.contentToString()}")
-            Log.i("Board_propose", "---row ${crow.contentToString()}")
+//            Log.i("Board_propose", "---col ${ccol.contentToString()}")
+//            Log.i("Board_propose", "---row ${crow.contentToString()}")
 
             // find its neighbors
             // check if it is against an edge
-            Log.i("Board_propose", "Finding neighbors of node ${lonely.isIdentifier}")
+//            Log.i("Board_propose", "Finding neighbors of node ${lonely.isIdentifier}")
+
+            Log.i("Board_propose", "NODE ${lonely.isIdentifier}: r${irow}c${jcol} | r = ${crow.contentToString()}, c = ${ccol.contentToString()}")
 
             // going right
-            if (jcol < ccol.size-2) {
-                for (iter in jcol+1 until ccol.size) {
-//                    Log.i("Board_propose", "--Checking for rightward neighbor at index c$iter")
-                    if (ccol[iter] > -1) {
+            if ((nextRightNeighbor == -1) && jcol < crow.size-2) {
+                for (iter in jcol+2 until crow.size) {
+                    Log.i("Board_propose", "--Checking for rightward neighbor at index c$iter")
+                    if (crow[iter] > -1) {
                         Log.i("Board_propose", "----Found rightward neighbor at index c$iter.")
-                        nextRightNeighbor = iter
+                        nextRightNeighbor = crow[iter]
                         break
                     }
                 }
+            }
+            else {
+                Log.i("Board_propose", "--Already has right neighbor or near edge")
             }
             // going left
-            if (jcol > 1) {
-                for (iter in (jcol-1 downTo 0)) {
-//                    Log.i("Board_propose", "--Checking for leftward neighbor at index c$iter")
-                    if (ccol[iter] > -1) {
+            if ((nextLeftNeighbor == -1) && jcol > 1) {
+                for (iter in (jcol-2 downTo 0)) {
+                    Log.i("Board_propose", "--Checking for leftward neighbor at index c$iter")
+                    if (crow[iter] > -1) {
                         Log.i("Board_propose", "----Found leftward neighbor at c$iter.")
-                        nextLeftNeighbor = iter
+                        nextLeftNeighbor = crow[iter]
                         break
                     }
                 }
+            }
+            else {
+                Log.i("Board_propose", "--Already has left neighbor or near edge")
             }
             // going up
-            if (irow > 1) { // not the top/first row
-                for (iter in irow-1 downTo 0) {
-//                    Log.i("Board_propose", "--Checking for upward neighbor at index r$iter")
-                    if (crow[iter] > -1) {
+            if ((nextUpNeighbor == -1) && irow > 1) { // not the top/first row
+                for (iter in irow-2 downTo 0) {
+                    Log.i("Board_propose", "--Checking for upward neighbor at index r$iter")
+                    if (ccol[iter] > -1) {
                         Log.i("Board_propose", "----Found upward neighbor at r$iter.")
-                        nextUpNeighbor = iter
+                        nextUpNeighbor = ccol[iter]
                         break
                     }
                 }
             }
+            else {
+                Log.i("Board_propose", "--Already has up neighbor or near edge")
+            }
             // going down // not the last row
-            if (irow < crow.size-2) {
-                for (iter in irow+1 until crow.size) {
-//                    Log.i("Board_propose", "--Checking for downward neighbor at index r$iter")
-                    if (crow[iter] > -1) {
-                        Log.i("Board_propose", "----Found downward neighbor at r$iter.")
-                        nextDownNeighbor = iter
+            if ((nextDownNeighbor == -1) && irow < ccol.size-2) {
+                for (iter in irow+2 until ccol.size) {
+                    Log.i("Board_propose", "--Checking for downward neighbor at index r$iter")
+                    if (ccol[iter] > -1) {
+                        Log.i("Board_propose", "----Found downward neighbor $ at r$iter.")
+                        nextDownNeighbor = ccol[iter]
                         break
                     }
                 }
+            }
+            else {
+                Log.i("Board_propose", "--Already has down neighbor or near edge")
             }
 
             // check if node has no neighbors. Mark it for removal then continue to next node
@@ -182,7 +200,7 @@ class HashiBoard {
                 (nextDownNeighbor == -1) && (nextRightNeighbor == -1)) {
 
                 removeIndices.add(deleteIndex)
-                newMap[irow][jcol] = -1
+                (newMap[irow])[jcol] = -1
                 Log.i("Board_propose", "Tagging node ${lonely.isIdentifier} for removal (no neighbors)")
                 continue
             }
@@ -192,99 +210,114 @@ class HashiBoard {
             // randomly decide whether to establish 0, 1, or 2 bridge(s)
             // mark map with -2 where bridges are drawn to prevent overlap
             // up up right right down down left left
-            Log.i("Board_propose", "Generating bridges for node ${lonely.isIdentifier}")
+            Log.i("Board_propose", "----Generating bridges for node ${lonely.isIdentifier}")
             val mockWeightedBridging = intArrayOf(0, 1, 1, 2)
             var numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
-            if ((nextUpNeighbor > -1) && (numBridges > 0)) {
+            if ((nextUpNeighbor > -1) && (!lonely.expectedBridges[0]) && (numBridges > 0)) {
+                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
                 lonely.neighbors[0] = nextUpNeighbor
                 nodeTrackingList[nextUpNeighbor].neighbors[2] = lonely.isIdentifier
 
                 // check if bridge already built between these two islands
                 if (!lonely.expectedBridges[0]) {
+                    Log.i("Board_propose", "------Building upward bridge to $nextUpNeighbor")
                     lonely.expectedBridges[0] = true
                     nodeTrackingList[nextUpNeighbor].expectedBridges[4] = true
                     if (numBridges == 2) {
+                        Log.i("Board_propose", "--------Built two bridges")
                         lonely.expectedBridges[1] = true
                         nodeTrackingList[nextUpNeighbor].expectedBridges[5] = true
                     }
 
                     // mark map with the bridge (using -2)
                     // above current node, below neighbor node
-                    for (bridgeSegment in nextUpNeighbor+1 until irow) {
-                        newMap[bridgeSegment][jcol] = -2
+                    for (bridgeSegment in nodeTrackingList[nextUpNeighbor].isLoc[1]+1 until irow) {
+                        (newMap[bridgeSegment])[jcol] = -2
                     }
                 } // end if: check already bridged
             } // end if: bridge up neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
-            if ((nextRightNeighbor > -1) && (numBridges > 0)) {
+            if ((nextRightNeighbor > -1) && (!lonely.expectedBridges[2]) && (numBridges > 0)) {
+                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
                 lonely.neighbors[1] = nextRightNeighbor
                 nodeTrackingList[nextRightNeighbor].neighbors[3] = lonely.isIdentifier
 
                 // check if bridge already built between these two islands
                 if (!lonely.expectedBridges[2]) {
+                    Log.i("Board_propose", "------Building rightward bridge to $nextRightNeighbor")
                     lonely.expectedBridges[2] = true
                     nodeTrackingList[nextRightNeighbor].expectedBridges[6] = true
                     if (numBridges == 2) {
+                        Log.i("Board_propose", "--------Built two bridges")
                         lonely.expectedBridges[3] = true
                         nodeTrackingList[nextRightNeighbor].expectedBridges[7] = true
                     }
 
                     // mark map with the bridge (using -2)
                     // right of current node, left of neighbor node
-                    for (bridgeSegment in jcol+1 until nextRightNeighbor) {
-                        newMap[irow][bridgeSegment] = -2
+                    for (bridgeSegment in jcol+1 until nodeTrackingList[nextRightNeighbor].isLoc[0]) {
+                        (newMap[irow])[bridgeSegment] = -3
                     }
                 } // end if: check already bridged
             } // end if: bridge right neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
-            if ((nextDownNeighbor > -1) && (numBridges > 0)) {
+            if ((nextDownNeighbor > -1) && (!lonely.expectedBridges[4]) && (numBridges > 0)) {
+                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
                 lonely.neighbors[2] = nextDownNeighbor
                 nodeTrackingList[nextDownNeighbor].neighbors[0] = lonely.isIdentifier
 
                 // check if bridge already built between these two islands
                 if (!lonely.expectedBridges[4]) {
+                    Log.i("Board_propose", "------Building downward bridge to $nextDownNeighbor")
                     lonely.expectedBridges[4] = true
                     nodeTrackingList[nextDownNeighbor].expectedBridges[0] = true
                     if (numBridges == 2) {
+                        Log.i("Board_propose", "--------Built two bridges")
                         lonely.expectedBridges[5] = true
                         nodeTrackingList[nextDownNeighbor].expectedBridges[1] = true
                     }
 
                     // mark map with the bridge (using -2)
                     // below current node, above neighbor node
-                    for (bridgeSegment in irow+1 until nextDownNeighbor) {
-                        newMap[bridgeSegment][jcol] = -2
+                    for (bridgeSegment in irow+1 until nodeTrackingList[nextDownNeighbor].isLoc[1]) {
+                        (newMap[bridgeSegment])[jcol] = -2
                     }
                 } // end if: check already bridged
             } // end if: bridge down neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
-            if ((nextLeftNeighbor > -1) && (numBridges > 0)) {
+            if ((nextLeftNeighbor > -1) && (!lonely.expectedBridges[6]) && (numBridges > 0)) {
+                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
                 lonely.neighbors[3] = nextLeftNeighbor
                 nodeTrackingList[nextLeftNeighbor].neighbors[1] = lonely.isIdentifier
 
                 // check if bridge already built between these two islands
                 // if not, establish bridge
                 if (!lonely.expectedBridges[6]) {
+                    Log.i("Board_propose", "------Building leftward bridge to $nextLeftNeighbor")
                     lonely.expectedBridges[6] = true
                     nodeTrackingList[nextLeftNeighbor].expectedBridges[2] = true
                     if (numBridges == 2) {
+                        Log.i("Board_propose", "--------Built two bridges")
                         lonely.expectedBridges[7] = true
                         nodeTrackingList[nextLeftNeighbor].expectedBridges[3] = true
                     }
 
                     // mark map with the bridge (using -2)
                     // left of current node, right of neighbor node
-                    for (bridgeSegment in nextLeftNeighbor+1 until jcol) {
-                        newMap[irow][bridgeSegment] = -2
+                    for (bridgeSegment in nodeTrackingList[nextLeftNeighbor].isLoc[0]+1 until jcol) {
+                        (newMap[irow])[bridgeSegment] = -3
                     }
                 } // end if: check already bridged
             } // end if: bridge left neighbor
 
             // check if no bridges were built for node
             // mark it for removal
+            // NEED TO ALSO REMOVE THIS AS A NEIGHBOR TO ITS NEIGHBOR NODES
+            Log.i("Board_propose", "--NODE ${lonely.isIdentifier} Expected bridges: ${lonely.expectedBridges.contentToString()}")
+            Log.i("Board_propose", "--NODE ${lonely.isIdentifier} Neighbors: ${lonely.neighbors.contentToString()}")
             if (lonely.expectedBridges.none{ it }) {
                 removeIndices.add(deleteIndex)
-                newMap[irow][jcol] = -1
+                (newMap[irow])[jcol] = -1
                 Log.i("Board_propose", "Tagging node ${lonely.isIdentifier} for removal")
                 continue
             }
@@ -295,6 +328,11 @@ class HashiBoard {
         // should probably go backwards so indexing isn't affected by changing nodeList
         for (delIndex in removeIndices.reversed()) {
             nodeTrackingList.removeAt(delIndex)
+        }
+
+        Log.i("Board_propose", "========== MAP AFTER BRIDGES: =================")
+        for (i in newMap.indices) {
+            Log.i("Board_propose", newMap[i].contentToString())
         }
 
         // update numeric mapping
@@ -394,7 +432,7 @@ class HashiBoard {
                             }
                         }
                         else {
-                            Log.e("Testing_DFS", "Unable to locate neighbor node with id $neighbor")
+                            Log.e("Testing_DFS", "NODE ${node.isIdentifier}: Unable to locate neighbor node with id $neighbor")
                         }
                     }
                 }
@@ -413,6 +451,7 @@ class HashiBoard {
         }
 
         // default condition
+        Log.w("Board_testing", "Failed test: existsValidSolution")
         return false
     }
 }
