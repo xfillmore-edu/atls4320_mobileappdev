@@ -214,7 +214,7 @@ class HashiBoard {
             val mockWeightedBridging = intArrayOf(0, 1, 1, 2)
             var numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextUpNeighbor > -1) && (!lonely.expectedBridges[0]) && (numBridges > 0)) {
-                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
+                Log.i("Board_propose", "----Attempting upward bridge")
                 lonely.neighbors[0] = nextUpNeighbor
                 nodeTrackingList[nextUpNeighbor].neighbors[2] = lonely.isIdentifier
 
@@ -238,7 +238,7 @@ class HashiBoard {
             } // end if: bridge up neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextRightNeighbor > -1) && (!lonely.expectedBridges[2]) && (numBridges > 0)) {
-                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
+                Log.i("Board_propose", "----Attempting rightward bridge")
                 lonely.neighbors[1] = nextRightNeighbor
                 nodeTrackingList[nextRightNeighbor].neighbors[3] = lonely.isIdentifier
 
@@ -262,7 +262,7 @@ class HashiBoard {
             } // end if: bridge right neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextDownNeighbor > -1) && (!lonely.expectedBridges[4]) && (numBridges > 0)) {
-                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
+                Log.i("Board_propose", "----Attempting downward bridge")
                 lonely.neighbors[2] = nextDownNeighbor
                 nodeTrackingList[nextDownNeighbor].neighbors[0] = lonely.isIdentifier
 
@@ -286,7 +286,7 @@ class HashiBoard {
             } // end if: bridge down neighbor
             numBridges = mockWeightedBridging[Random.nextInt(0, 4)]
             if ((nextLeftNeighbor > -1) && (!lonely.expectedBridges[6]) && (numBridges > 0)) {
-                Log.i("Board_propose", "----Will attempt to build bridge if not already done")
+                Log.i("Board_propose", "----Attempting leftward bridge")
                 lonely.neighbors[3] = nextLeftNeighbor
                 nodeTrackingList[nextLeftNeighbor].neighbors[1] = lonely.isIdentifier
 
@@ -312,7 +312,6 @@ class HashiBoard {
 
             // check if no bridges were built for node
             // mark it for removal
-            // NEED TO ALSO REMOVE THIS AS A NEIGHBOR TO ITS NEIGHBOR NODES
             Log.i("Board_propose", "--NODE ${lonely.isIdentifier} Expected bridges: ${lonely.expectedBridges.contentToString()}")
             Log.i("Board_propose", "--NODE ${lonely.isIdentifier} Neighbors: ${lonely.neighbors.contentToString()}")
             if (lonely.expectedBridges.none{ it }) {
@@ -320,6 +319,7 @@ class HashiBoard {
                 (newMap[irow])[jcol] = -1
                 Log.i("Board_propose", "Tagging node ${lonely.isIdentifier} for removal")
                 continue
+                TODO("Remove this node as neighbor of other nodes")
             }
 
         } // end for loop: main bridge building for each node
