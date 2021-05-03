@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZEh-OS-fgl">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Secondary View Controller-->
+        <scene sceneID="79g-Ew-7Zd">
+            <objects>
+                <viewController id="XAK-5F-fX1" customClass="SecondaryViewController" customModule="Nursery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6HG-I4-hlD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21R-GZ-vaw">
+                                <rect key="frame" x="36" y="124" width="342" height="702"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZQI-TP-iXI"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="21R-GZ-vaw" firstAttribute="leading" secondItem="ZQI-TP-iXI" secondAttribute="leading" constant="36" id="Idm-js-WX2"/>
+                            <constraint firstItem="ZQI-TP-iXI" firstAttribute="bottom" secondItem="21R-GZ-vaw" secondAttribute="bottom" constant="36" id="Pqi-PX-fsi"/>
+                            <constraint firstItem="ZQI-TP-iXI" firstAttribute="trailing" secondItem="21R-GZ-vaw" secondAttribute="trailing" constant="36" id="bTe-vs-Txi"/>
+                            <constraint firstItem="21R-GZ-vaw" firstAttribute="top" secondItem="ZQI-TP-iXI" secondAttribute="top" constant="36" id="dR1-CW-BJV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ncb-pO-Jpa"/>
+                    <connections>
+                        <outlet property="rcLabel" destination="21R-GZ-vaw" id="qfC-Xu-4hf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KKZ-n6-KPJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630.43478260869574" y="95.758928571428569"/>
+        </scene>
+        <!--Nursery Rhyme-->
+        <scene sceneID="Fla-Zq-gob">
+            <objects>
+                <tableViewController title="Nursery Rhyme" clearsSelectionOnViewWillAppear="NO" id="PW3-s3-wIh" customClass="PrimaryViewController" customModule="Nursery" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ev0-lv-yfy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" id="OUU-nU-kKG">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OUU-nU-kKG" id="fWy-4z-s6p">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="k57-kN-L6o" kind="showDetail" identifier="detailSegue" id="X6h-TH-SVJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PW3-s3-wIh" id="quE-Fa-YTV"/>
+                            <outlet property="delegate" destination="PW3-s3-wIh" id="Xle-Fk-XNL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Nursery Rhyme" id="DqO-Ez-1v4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kbr-9C-rdb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1521.7391304347827" y="-511.60714285714283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dgw-oF-9hk">
+            <objects>
+                <navigationController id="b7F-bh-Pc7" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ejc-cD-Obu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PW3-s3-wIh" kind="relationship" relationship="rootViewController" id="jEh-ct-7ol"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qng-fY-Z01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-280" y="-511"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="BFf-ai-xLK">
+            <objects>
+                <splitViewController allowDoubleColumnStyle="YES" id="ZEh-OS-fgl" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="b7F-bh-Pc7" kind="relationship" relationship="masterViewController" id="pDy-41-qHg"/>
+                        <segue destination="k57-kN-L6o" kind="relationship" relationship="detailViewController" id="Brd-Bf-y2S"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B6K-lU-daB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1170" y="-207"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zmn-Xt-6r3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k57-kN-L6o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Pl-AQ-kin">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XAK-5F-fX1" kind="relationship" relationship="rootViewController" id="Y8M-Mt-SEm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4VK-Kz-Fjh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-279.71014492753625" y="95.758928571428569"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="X6h-TH-SVJ"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

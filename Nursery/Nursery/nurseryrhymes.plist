@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+    <dict>
+        <key>title</key>
+        <string>Humpty Dumpty</string>
+        
+        <key>content</key>
+        <string>
+Humpty Dumpty sat on a wall.
+Humpty Dumpty had a great fall.
+All the king's horses and all the king's men
+Couldn't put Humpty together again.
+        </string>
+    </dict>
+    
+    <dict>
+        <key>title</key>
+        <string>Frère Jacques</string>
+        
+        <key>content</key>
+        <string>
+Frère Jacques, Frère Jacques,
+Dormez vous? Dormez vous?
+Sonnez les matines. Sonnez les matines.
+Ding, dang, dong. Ding, dang, dong.
+        </string>
+    </dict>
+    
+    <dict>
+        <key>title</key>
+        <string>Kookaburra</string>
+        
+        <key>content</key>
+        <string>
+Kookaburra sits an old gum tree,
+Merry, merry king of the bush is he.
+Laugh, kookaburra laugh,
+Kookaburrra gay your life must be.
+        </string>
+    </dict>
+    
+    
+    
+    
+    
+    
+</array>
+</plist>
